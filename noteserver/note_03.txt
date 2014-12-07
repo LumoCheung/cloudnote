@@ -1,0 +1,41 @@
+User-->id=1-->分配唯一一个URL
+ POST-->添加
+ GET-->查询
+ PUT-->更新
+ DELETE-->删除
+
+
+getUser.form?id=1
+/user/1-->GET
+
+User-->id=2-->分配唯一一个URL
+
+https://192.168.176.252/svn/SVN
+
+=============================
+1.熟悉需求和数据表（以组为单位讨论）
+  --参考提供的文档资料
+2.分工/计划（组长带头，按5天计划）
+  ==生成文档
+3.功能设计（个人）
+  --RESTFUL设计
+  --请求响应处理流程
+  --以组为单位讨论
+  ==生成文档
+4.项目整体编码规约（组长，再讨论）
+  --注释
+  --命名
+  --开发工具（统一）
+  ==生成文档
+5.在登录使用RESTFUL（个人）
+  --修改请求URL风格
+  --修改请求提交方式POST,GET,PUT,DELETE
+  --修改DispatcherServlet的url-pattern为/
+  --修改Controller中@RequestMapping指定的URL
+
+6.SVN+MyEclipse
+  （参考：使用文档）
+
+
+
+

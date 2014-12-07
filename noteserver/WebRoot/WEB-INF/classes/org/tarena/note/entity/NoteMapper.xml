@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="org.tarena.note.dao.NoteDao">
+ 	<delete id="delete_note" parameterType="string" >
+ 		delete from cn_note where cn_note_id=#{note_id}
+ 	</delete>
+ 	<update id="replay_recover_note" parameterType="org.tarena.note.entity.NoteResponse">
+ 		update cn_note set cn_note_status_id='5',cn_notebook_id=#{status} where cn_note_id=#{message}
+ 	</update>
+ 	<select id="findByNoteBookId" parameterType="string" resultType="org.tarena.note.entity.Note">
+		select cn_note_id note_id,
+		cn_note_title note_title,cn_note_status_id note_status_id from cn_note where cn_notebook_id=#{id} and cn_note_status_id!='2' 
+	</select>
+	
+	
+	<select parameterType="String" id="findByNoteId" resultType="org.tarena.note.entity.Note">
+ 	select cn_note_id note_id,cn_notebook_id notebook_id,
+		cn_user_id user_id,cn_note_status_id note_status_id,
+		cn_note_type_id note_type_id,
+		cn_note_title note_title,cn_note_body note_body,
+		cn_note_create_time note_create_time,
+		cn_note_last_modify_time note_last_modify_time
+		from cn_note 
+		where cn_note_id=#{id};
+ 	</select>
+ 	
+ 	<insert id="creat_note" parameterType="org.tarena.note.entity.Note">
+ 		insert into cn_note(cn_note_id,cn_notebook_id ,
+		cn_user_id,cn_note_status_id,cn_note_type_id,
+		cn_note_title,cn_note_body,cn_note_create_time,
+		cn_note_last_modify_time) 
+		values(#{note_id},#{notebook_id},#{user_id},#{note_status_id},
+		#{note_type_id},#{note_title},#{note_body},#{note_create_time},#{note_last_modify_time});
+ 	</insert>
+ 	
+ 	
+ 	<!-- 保存笔记内容 -->
+ 	<update id="saveContent" parameterType="org.tarena.note.entity.Note">
+ 		update cn_note set
+ 		cn_note_title=#{note_title},
+ 		cn_note_body=#{note_body},
+ 		cn_note_last_modify_time=#{note_last_modify_time}
+ 		where cn_note_id=#{note_id};
+ 	</update>
+ 	
+ 	<!-- 笔记放入回收站 -->
+ 	<update id="recoverById" parameterType="String" >
+ 		update cn_note set 
+ 		cn_note_status_id = '2'
+ 		where cn_note_id=#{id};
+ 	</update>
+ 	
+ 	<!-- 笔记分享修改 -->
+ 	<update id="shareById" parameterType="String">
+ 		update cn_note set
+ 		cn_note_status_id='4'
+ 		where cn_note_id=#{id};
+ 	</update>
+ 	
+ 	<!-- 显示回收站中的笔记 -->
+ 	<select id="list_recovernote" parameterType="string" resultType="org.tarena.note.entity.Note">
+		select cn_note_id note_id,cn_note_title note_title from cn_note where cn_user_id=#{userId} and cn_note_status_id='2'
+	</select>
+	
+	<select id="move_listnotebook" parameterType="org.tarena.note.entity.NoteResponse" resultType="org.tarena.note.entity.NoteBook">
+		select cn_notebook_id notebook_id,cn_notebook_name notebook_name from cn_notebook where cn_user_id=#{status} 
+		and cn_notebook_id !=#{message}
+	</select>
+	<update id="move_note" parameterType="org.tarena.note.entity.NoteResponse">
+		update cn_note set cn_notebook_id=#{status} where cn_note_id=#{message}
+	</update>
+	
+	<!-- 根据关键字查询共享笔记(注意：笔记需要是共享状态，默认所有笔记都是共享状态)-->
+	<select id="findByKeywords" parameterType="string"
+		resultType="org.tarena.note.entity.Note">
+		select cn_note_title note_title,cn_note_id note_id
+		from cn_note where cn_note_title like concat('%',#{keywords},'%') and cn_note_status_id='4'
+		<!-- and cn_note_status_id = 4 -->
+	</select>
+	<select id="judge_collect" parameterType="string" resultType="org.tarena.note.entity.Note">
+		
+	</select>
+	
+	<select id="list_collect_note" parameterType="string" resultType="org.tarena.note.entity.Note">
+		select cn_note_id note_id,
+		cn_note_title note_title,cn_note_status_id note_status_id from cn_note where cn_notebook_id=#{id} and cn_note_status_id='1' 
+	</select>
+ </mapper>

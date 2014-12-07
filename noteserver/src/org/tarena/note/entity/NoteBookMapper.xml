@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.tarena.note.dao.NoteBookDao">
+	<select id="findAllNoteBook" parameterType="string"
+		resultType="org.tarena.note.entity.NoteBook">
+		select cn_notebook_id notebook_id,
+			cn_user_id user_id,
+			cn_notebook_type_id type_id,
+			cn_notebook_name notebook_name,
+			cn_notebook_desc notebook_desc,
+			cn_notebook_createtime notebook_createtime
+		from cn_notebook where cn_user_id=#{user_id} 
+	</select>
+	<insert id="insertNotebook" parameterType="org.tarena.note.entity.NoteBook">
+		insert into cn_notebook(cn_notebook_id,cn_notebook_name,cn_notebook_createtime,cn_user_id)values(#{notebook_id},#{notebook_name},#{notebook_createtime},#{user_id})
+	</insert>
+	<update id="rename_notebook" parameterType="org.tarena.note.entity.NoteResponse">
+		update cn_notebook set cn_notebook_name=#{status} where cn_notebook_id=#{message}
+	</update>
+	<select id="countnote_notebook" parameterType="string" resultType="int">
+		select count(*) from cn_note where cn_notebook_id=#{no} 
+	</select>
+	
+	
+	
+</mapper>

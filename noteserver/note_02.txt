@@ -1,0 +1,52 @@
+
+前提招标--》售前工程师+销售--》签合同
+获取需求--》需求分析师--》需求分析文档
+具体设计--》概要设计+详细设计
+实现--》编码+单体测试--》测试代码
+测试--》测试--》测试文档
+实施--》部署+修改--》实施文档
+
+===========MyBatis=================
+1.MyBatis作用
+ 对JDBC进行了封装,简化数据访问代码。
+ MyBatis可以做一下工作：
+ --封装了获取连接，设置SQL参数，
+   执行SQL，将结果映射成对象，释放连接
+ MyBatis需要开发者提供以下文件：
+ --SqlMapConfig.xml主配置文件
+（定义数据库连接参数）
+ --SqlMap.xml定义SQL语句文件
+ --如果需要和Entity对象映射，
+   编写实体类
+ --如果需要以接口方式调用SQL，
+   编写Mapper映射器接口
+
+2.了解MyBatis体系结构
+  --配置加载
+    解析xml配置,将SQL封装成Statement
+  --SQL解析
+    Map,对象,int/string
+    将传入的SQL参数给Statement设置
+  --SQL执行
+    发送给数据库执行SQL
+  --将结果映射
+    将SQL结果映射成Map,对象,int/string
+
+3.MyBatis的主要API
+  --SqlSessionFactoryBuilder
+  --SqlSessoinFactory
+  --SqlSession
+    insert(sql的id,参数);
+    update(sql的id,参数);
+    delete(sql的id,参数);
+    selectList(sql的id,参数);
+    selectOne(sql的id,参数);
+    getMapper(Mapper映射器接口.class);
+
+
+
+html--Ajax-->Controller
+
+local.js-->login.js-->login_callback.js
+发送Ajax函数    Ajax回调函数
+

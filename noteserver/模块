@@ -1,0 +1,54 @@
+
+resulful设计规范
+ POST-->添加
+ GET-->查询
+ PUT-->更新
+ DELETE-->删除
+一,数据库设计:
+(ftp文档和mysql.sql)
+------用户------
+用户:cn_user
+-------笔记------
+笔记:cn_note 
+笔记状态cn_note_status 
+分享笔记:cn_share
+笔记类型:cn_note_type(分享时创建标签)
+-----笔记本----------
+笔记本:cn_notebook
+--------活动--------
+活动:cn_activity
+活动状态:cn_activity_status
+活动笔记:cn_note_activity(相当与投稿)
+
+二,模块设计
+1)user:(/user)
+  !注册(value=/register method=RequestMethod.POST)
+  !!登录(value=/login method=RequestMethod.POST)
+2)notebook:(/notebook)
+ !列出所有笔记本(value=/findAllNotebook method=RequestMethod.GET)
+ !!增加笔记本(value=/addNotebook method=RequestMethod.POST)
+ !!!修改笔记本(value=/updateNotebook/{id} method=RequestMethod.PUT)
+ !!!!删除笔记本(value=/deleteNotebook/{id} method=RequestMethod.DELETE)
+3)note(/note) PS:note_status字段为笔记状态 状态为"1"的为正常,状态为"0"的为删除可在回收站找回状态为"2"为分享笔记
+ ---------------select------------------
+ !列出指定notebook_id下面所有状态为不为"0"的笔记,(value=/findAllNote{notebook_id} method=RequestMethod.GET)
+ ---------------insert------------------
+ !!1.增加笔记(value=/addNote method=RequestMethod.POST)
+   2.收藏笔记(value=/addNote method=RequestMethod.POST)//将分享中别人的笔记取出来,修改用户id笔记本id等增加到自己的笔记中
+ ---------------update------------------   	
+ !!!1修改笔记(value=/updateNote/{id} method=RequestMethod.PUT)//修改笔记的title,body
+    2删除笔记(value=/updateNote/{id} method=RequestMethod.PUT)//修改笔记的状态 1->0
+    3恢复笔记(value=/updateNote/{id} method=RequestMethod.PUT)//修改笔记的状态 0->1 此操作在回收站中
+    4分享笔记(value=/updateNote/{id} method=RequestMethod.PUT)//修改笔记的状态 1->2	
+    5移动笔记(value=/updateNote/{id} method=RequestMethod.PUT)//修改笔记的notebook_id
+ ---------------delete------------------        
+ !!!!1彻底删除笔记(value=/deleteNote/{id} method=RequestMethod.DELETE)// 此操作在回收站中清空回收站操作
+ 
+ 活动和分享笔记表设计不合理,功能未予实现
+4)activity(/activity)
+ !列出所有活动(value=/findAllActivity method=RequestMethod.GET)
+ !!创建活动(value=/addActivity method=RequestMethod.POST)
+ !!!参与活动(value=/updateActivity/{id} method=RequestMethod.PUT)
+    1.投稿//增加一个数据表为comment 活动id为comment的外键,并且修改字段`cn_note_activity_up` 加一
+    2.点赞 修改
+	

@@ -1,0 +1,189 @@
+梁建全：liangjq@tarena.com.cn
+==============================
+1.项目简介
+  云笔记：对学习笔记进行管理。
+2.项目功能
+  普通：个人专享
+  收藏：对其他人分享的笔记收藏
+  对笔记进行删除，恢复，转移，查看等操作
+  对笔记和笔记本进行管理
+  将笔记参加活动（投稿）
+  登录、注册、修改密码、退出
+3.采用设计思想和技术
+  动静分离。
+  将静态资源和动态服务器处理分离。
+  静态资源：html,css,js,音频文件,图片,文档
+  动态服务器：Tomcat运行的Servlet,JSP,(MVC框架)
+
+  该系统：利用Ngnix管理html，css,js
+          利用Tomcat集群分布部署Web项目
+          利用redis管理Session
+          所有请求采用Ajax+Restful方式处理 
+
+noteweb(html)--ajax+restful
+-->noteserver
+-->SpringMVC+SpringIOC+MyBatis
+-->JSON结果
+-->html中的ajax回调函数解析渲染到页面
+  
+===================================
+1.SpringIOC:控制反转，
+将对象交给容器管理,采用注入方式建立关系
+
+<bean id="" class="">
+<context:component-scan base-package=""/>
+发现@Controller,@Service,@Reponsitory
+@Component之一扫描到Spring容器
+
+UserService-->UserDao
+
+@Resource
+private UserDao dao;
+
+2.Spring MVC
+  a.主要组件
+   DispatcherServlet
+   Controller
+   HandlerMapping
+   ViewResolver
+   Model
+   ModelAndView
+  b.组件流程
+  请求-->DispatcherServlet(配置)
+      -->HandlerMapping(RequestMapping配置)
+      -->Controller(调用Service/Dao编写+配置)
+      -->ModelAndView(String)
+      -->ViewResolver配置(JSP编写)
+      -->HTML响应
+   c.帮我们做了什么事？
+   可以快速开发MVC结构的Java Web程序.
+   提供了一个固定的请求到响应的处理流程。
+
+
+   d.使用方法
+    引入SpringIOC+SpringWeb开发包
+    设计一个流程
+  /demo/list.form
+-->DispatcherServlet
+-->RequestMappingHandlerMapping
+-->EmpListController
+-->EmpService
+-->EmpDao
+-->ViewResolver
+-->/WEB-INF/jsp/emp_list.jsp
+
+3.MyBatis（ORM框架）
+ 对JDBC的封装，需要开发者提供SQL。
+    
+
+Object<--Mapping-->Relation DB
+
+insert(user)
+delete(user)
+update(user)
+User user = find()
+List<User> list = find()
+
+MapperDao接口(编写)
+-->框架生成实现类(自动生成)
+-->SQLMapper.xml(编写SQL语句)
+-->DB表操作(编写)
+
+UserDao dao = 
+sqlSession.getMapper(UserDao.class);
+dao的实现类如下：
+public class $Proxy0{
+   public List<User> findAll(){
+        List<User> list = 
+        sqlSession.selectList("findAll");
+        return list;
+   }
+}
+
+4.Ajax技术
+  局部刷新,适合开发页面不切换。
+ 采用jQuery js框架，可以简化js和ajax编程。
+  
+  $.ajax({
+    url:"",
+    async:true,
+    type:"",
+    data:"",
+    dataType:"",
+    success:fn,
+    beforeSend:fn,
+    error:fn
+  })
+
+
+ function f1(){
+    $.ajax();//步骤1
+    $.ajax();//步骤2
+    //检测是否完成提示
+ }
+
+遇到一个请求涉及两个或两个以上ajax，
+需要判断是否用异步或同步。
+
+==============登录==============
+1.设计流程
+
+noteweb
+ 利用ajax发/login/login.form请求
+ 接收noteserver响应结果,在页面提示
+noteserver
+/login/checklogin.form
+-->DispatcherServlet
+-->RequestMappingHanlderMapping
+-->LoginController
+-->UserService
+-->UserDao-->cn_user
+-->JSON结果
+
+noteweb-->ajax-->noteserver-->json结果
+
+{
+ status:处理状态,
+ message:消息,
+ data:数据
+}
+
+a.实现UserDao(Spring+MyBatis)
+  --引入spring的IOC,AOP,JDBC开发包，
+    applicationContext.xml配置文件
+  --引入Mybatis开发包
+  --编写实体类
+  --编写UserDao接口
+  --编写UserMapper.xml
+  --在Spring中配置UserDao组件
+    MapperScannerConfigurer生成UserDao实现类
+    <--sqlSessionFactoryBean
+    <--dataSource(数据源connection)
+  --测试Dao组件
+  
+
+org.tarena.note.controller
+org.tarena.note.service
+org.tarena.note.dao
+org.tarena.note.entity
+org.tarena.note.util
+
+ b.实现UserService
+  --编写UserService接口
+  --编写UserServiceImpl实现类
+  --Spring组件扫描Service,注入UserDao应用
+  --测试
+
+ c.实现LoginController(MVC)
+  --引入springmvc开发包
+  --在web.xml配置DispatcherServlet
+  --在applicationContext.xml配置HanlderMapping
+  --编写LoginController处理
+    将处理结果转成JSON格式字符串
+    首先引入jackson开发包
+    然后在Controller方法前添加@ReponseBody即可
+  --根据请求配置LoginController
+    使用@RequestMapping注解
+  --测试
+
+

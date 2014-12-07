@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.tarena.note.dao.UserDao">
+	<select id="findByName" 
+		parameterType="string"
+		resultType="org.tarena.note.entity.User">
+		select cn_user_id id,
+			cn_user_name name,
+			cn_user_password password,
+			cn_user_token token,
+			cn_user_desc descr
+		from cn_user
+		where cn_user_name=#{name} 
+	</select>
+
+	
+</mapper>

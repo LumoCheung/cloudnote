@@ -1,0 +1,19 @@
+#Fri Oct 17 10:56:37 CST 2014
+eclipse.preferences.version=1
+encoding//src/org/tarena/note/controller/login/LoginController.java=UTF-8
+encoding//src/org/tarena/note/controller/login/NoteBookController.java=UTF-8
+encoding//src/org/tarena/note/controller/login/NoteController.java=UTF-8
+encoding//src/org/tarena/note/dao/NoteBookDao.java=UTF-8
+encoding//src/org/tarena/note/dao/NoteDao.java=UTF-8
+encoding//src/org/tarena/note/dao/UserDao.java=UTF-8
+encoding//src/org/tarena/note/entity/Note.java=UTF-8
+encoding//src/org/tarena/note/entity/NoteBook.java=UTF-8
+encoding//src/org/tarena/note/entity/NoteResponse.java=UTF-8
+encoding//src/org/tarena/note/interceptor/LoginInterceptor.java=UTF-8
+encoding//src/org/tarena/note/service/NoteBookServiceImpl.java=UTF-8
+encoding//src/org/tarena/note/service/NoteServiceImpl.java=UTF-8
+encoding//src/org/tarena/note/service/UserServiceImpl.java=UTF-8
+encoding//src/org/tarena/note/util/NoteUtil.java=UTF-8
+encoding//src/org/tarena/note/util/cookie_util.java=UTF-8
+encoding/<project>=UTF-8
+encoding/note_03.txt=UTF-8
