@@ -1,22 +1,22 @@
-//¸øµÇÂ¼°´Å¥Ìí¼Óµ¥»÷ÊÂ¼ş
-//Á½¸öÊäÈë´°¿ÚµÄIDÓÃ»§Ãûcount    IDÃÜÂëpassword
+//ç»™ç™»å½•æŒ‰é’®æ·»åŠ å•å‡»äº‹ä»¶
+//ä¸¤ä¸ªè¾“å…¥çª—å£çš„IDç”¨æˆ·åcount    IDå¯†ç password
 $(function(){
 
 	$("#login").click(function(){
-		//Çå¿ÕÏûÏ¢ÌáÊ¾
+		//æ¸…ç©ºæ¶ˆæ¯æç¤º
 		$("#count_span").html("");
 		$("#password_span").html("");
 	
 	    var v_name = $("#count").val();
 	    var v_pwd = $("#password").val();
 	    var ok = true;
-	    //¼ì²âÓÃ»§ÊäÈëĞÅÏ¢¸ñÊ½
+	    //æ£€æµ‹ç”¨æˆ·è¾“å…¥ä¿¡æ¯æ ¼å¼
 	    if(v_name == ""){
-	    	$("#count_span").html("ÓÃ»§Ãû²»ÄÜÎª¿Õ");
+	    	$("#count_span").html("ç”¨æˆ·åä¸èƒ½ä¸ºç©º");
 	    	ok = false;
 	    }
 	    if(v_pwd == ""){
-	    	$("#password_span").html("ÃÜÂë²»ÄÜÎª¿Õ");
+	    	$("#password_span").html("å¯†ç ä¸èƒ½ä¸ºç©º");
 	    	ok = false;
 	    }
 	    if(ok){
