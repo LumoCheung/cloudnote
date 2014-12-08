@@ -108,7 +108,7 @@
 								}
 								get('regist_password').onblur=function(){
 									var npassword=get('regist_password').value.length;
-									if(npassword<6&&npassword>0){
+									if(npassword<6&&npassword>=0){
 										get('warning_2').style.display='block';
 									}
 								}
