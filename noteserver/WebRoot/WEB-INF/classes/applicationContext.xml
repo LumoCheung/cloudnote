@@ -19,13 +19,13 @@
 		value="root">
 	</property>
 	<property name="password"
-		value="root">
+		value="123456">
 	</property>
 	<property name="driverClassName"
 		value="com.mysql.jdbc.Driver">
 	</property>
 	<property name="url" 
-		value="jdbc:mysql://localhost:3306/test">
+		value="jdbc:mysql:///note">
 	</property>
 </bean>
 
