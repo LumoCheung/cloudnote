@@ -19,13 +19,13 @@
 		value="root">
 	</property>
 	<property name="password"
-		value="123456">
+		value="root">
 	</property>
 	<property name="driverClassName"
 		value="com.mysql.jdbc.Driver">
 	</property>
 	<property name="url" 
-		value="jdbc:mysql:///note">
+		value="jdbc:mysql://localhost:3306/test">
 	</property>
 </bean>
 
@@ -70,6 +70,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/*/*"/>
 			<mvc:exclude-mapping path="/login/*"/>
+			<mvc:exclude-mapping path="/regist/*"/>
 			<bean class="org.tarena.note.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

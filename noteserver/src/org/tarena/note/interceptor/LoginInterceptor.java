@@ -1,17 +1,12 @@
 package org.tarena.note.interceptor;
 
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
-import sun.misc.BASE64Decoder;
 
 /**
  * 拦截器进行登录的验证
@@ -55,7 +50,7 @@ public class LoginInterceptor  extends HandlerInterceptorAdapter{
 					}
 			}
 		 }
-		response.sendRedirect("/noteweb/log_in.html");
+		response.sendRedirect("http://localhost:8080/noteweb/log_in.html");
 		return false;
 	}
 	

@@ -16,6 +16,5 @@ function login_success(data){
 		alert(Base64.encode(token))
 		window.location.href="edit.html";
 	}
-	window.location.href="edit.html";
 }
 

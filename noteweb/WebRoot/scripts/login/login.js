@@ -1,5 +1,5 @@
 function checkLogin(v_name,v_pwd){
-	//·¢ËÍAjaxÇëÇó
+	//ç™»å½•Ajaxå¼‚æ­¥
 	$.ajax({
 		url:basepath+"/login/checklogin.form",
 		type:"get",

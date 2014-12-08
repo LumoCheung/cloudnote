@@ -2,7 +2,6 @@ package org.tarena.note.controller;
 
 
 
-import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.tarena.note.entity.NoteResponse;
 import org.tarena.note.service.UserService;
+import org.tarena.note.util.MD5MessageDigest;
 
 import sun.misc.BASE64Decoder;
 
@@ -41,9 +40,9 @@ public class LoginController {
 		String password = author_arr1[1];
 		//
 		System.out.println(name+" "+password);
-		
+		System.out.println(name+" "+MD5MessageDigest.md5(password));
 		NoteResponse res = 
-			service.checkLogin(name, password);
+			service.checkLogin(name, MD5MessageDigest.md5(password));
 		//将令牌存入session
 		if(res.getStatus().equals("0")){
 			Map map = (Map)res.getData();
