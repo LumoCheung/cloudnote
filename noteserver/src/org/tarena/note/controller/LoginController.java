@@ -1,4 +1,4 @@
-package org.tarena.note.controller.login;
+package org.tarena.note.controller;
 
 
 
