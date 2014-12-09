@@ -12,5 +12,5 @@ function addnotebook(){
 }
 function window_close(){
 	$('.opacity_bg').hide();
-	$('#can').hide();
+	$('#can').html("");
 }

@@ -53,6 +53,8 @@ function list_note(data){
 		else
 			ss=s1+s4+s3;
 		$("#pc_part_2 ul").append(ss);
+		$("#input_note_title").val("");
+		$("#myEditor").html("");
 	}
 }
 var tID;
@@ -72,6 +74,7 @@ function more(obj)
 		},function(){
 			//鼠标移走时取消下拉框的显示
 			$(".online div").css("display","none");
+			$("#"+id).css("display","none");
 		});
 		tID=setTimeout(function(){$(".online div").css("display","none");},1000);
 }
