@@ -42,12 +42,12 @@ public class NoteServiceImpl implements NoteSrevice {
 	}
 	
 	/**
-	 * 更具笔记的id查看该笔记下的内容
+	 * 根据笔记的id查看该笔记下的内容
 	 */
 	public NoteResponse findByNoteId(String id)
 	{
-		Note note=notedao.findByNoteId(id.split("_")[1]);
 		System.out.println(id.split("_")[1]);
+		Note note=notedao.findByNoteId(id.split("_")[1]);
 		List<Note>list=new ArrayList<Note>();
 		//System.out.println(note.getNote_body());
 		list.add(note);
