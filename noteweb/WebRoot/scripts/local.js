@@ -1,4 +1,4 @@
-//给登录按钮添加单击事件
+//给登录、注册按钮添加单击事件
 //两个输入窗口的ID用户名count    ID密码password
 $(function(){
 
@@ -22,5 +22,9 @@ $(function(){
 	    if(ok){
 			checkLogin(v_name,v_pwd);
 		}
+	});
+	
+	$("#regist_button").click(function(){
+		regist();
 	});
 });

@@ -9,13 +9,19 @@
 </script>
 <script type="text/javascript" src="scripts/base64.js">
 </script>
+<script type="text/javascript" src="scripts/baseValue.js">
+</script>
 <script type="text/javascript" src="scripts/login/login.js">
 </script>
 <script type="text/javascript" src="scripts/login/login_callback.js">
 </script>
-<script type="text/javascript" src="scripts/local.js">
+<script type="text/javascript" src="scripts/warning_util.js">
 </script>
-<script type="text/javascript" src="scripts/baseValue.js">
+<script type="text/javascript" src="scripts/regist/regist.js">
+</script>
+<script type="text/javascript" src="scripts/regist/regist_callback.js">
+</script>
+<script type="text/javascript" src="scripts/local.js">
 </script>
 
 <link rel="stylesheet" href="styles/login.css"/>
@@ -67,6 +73,7 @@
 					<dt>
 						<div class='letter'>
 							昵&nbsp;&nbsp;&nbsp;称:&nbsp;<input type="text" name="" id="nickname" tabindex='6'/>
+							<div class='warning' id='warning_4'><span>昵称不能为空</span></div>
 						</div>
 					</dt>
 					<dt>
@@ -86,37 +93,36 @@
 							<input type="button" name="" id="regist_button" value='&nbsp注&nbsp册&nbsp' tabindex='9'/>
 							<input type="button" name="" id="back" value='&nbsp返&nbsp回&nbsp' tabindex='10'/>
 							<script type="text/javascript">
-							function get(e){
-								return document.getElementById(e);
-							}
 							get('sig_in').onclick=function(){
 								get('dl').className='log log_out';
 								get('zc').className='sig sig_in';
+								$("#count_span").html("");
+								$("#password_span").html("");
 							}
 							get('back').onclick=function(){
 								get('zc').className='sig sig_out';
 								get('dl').className='log log_in';
+								for(i=1;i<5;i++){
+									$("#warning_"+i).css("display","none");
+								}
 							}
 							window.onload=function(){
 								var t =setTimeout("get('zc').style.visibility='visible'",800);
-								get('final_password').onblur=function(){
-									var npassword=get('regist_password').value;
-									var fpassword=get('final_password').value;
-									if(npassword!=fpassword){
-										get('warning_3').style.display='block';
-									}
-								}
-								get('regist_password').onblur=function(){
-									var npassword=get('regist_password').value.length;
-									if(npassword<6&&npassword>=0){
-										get('warning_2').style.display='block';
-									}
-								}
+								get('final_password').onblur=finPwd;
+								get('regist_password').onblur=regPwd;
+								get('regist_username').onblur=cUser;
+								get('nickname').onblur=cNick;
 								get('regist_password').onfocus=function(){
 									get('warning_2').style.display='none';
 								}
 								get('final_password').onfocus=function(){
 									get('warning_3').style.display='none';
+								}
+								get('regist_username').onfocus=function(){
+									get('warning_1').style.display='none';
+								}
+								get('nickname').onfocus=function(){
+									get('warning_4').style.display='none';
 								}
 							}
 							</script>

@@ -46,4 +46,23 @@ public class UserServiceImpl implements UserService{
 		return res;
 	}
 
+	public NoteResponse regist(String name, String password) {
+		// TODO Auto-generated method stub
+		NoteResponse res = new NoteResponse();
+		User user = dao.findByName(name);
+		if(user != null){
+			res.setStatus("1");
+			res.setMessage("用户名已存在");
+			return res;
+		}
+		user=new User();
+		user.setId(NoteUtil.createUUID());
+		user.setName(name);
+		user.setPassword(password);
+		dao.insertUser(user);
+		res.setStatus("0");
+		res.setMessage("注册成功");
+		return res;
+	}
+
 }

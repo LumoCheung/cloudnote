@@ -13,6 +13,10 @@
 		from cn_user
 		where cn_user_name=#{name} 
 	</select>
+	<insert id="insertUser" parameterType="org.tarena.note.entity.User">
+	insert into cn_user(cn_user_id,cn_user_name,cn_user_password,cn_user_token,cn_user_desc)
+	values(#{id},#{name},#{password},#{token},#{descr})
+	</insert>
 
 	
 </mapper>

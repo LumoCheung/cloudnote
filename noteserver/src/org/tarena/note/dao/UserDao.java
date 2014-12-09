@@ -11,4 +11,9 @@ public interface UserDao {
 	 * @return
 	 */
 	public User findByName(String name);
+	/**
+	 * 插入一条user数据
+	 * @param user
+	 */
+	public void insertUser(User user);
 }

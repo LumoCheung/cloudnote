@@ -5,7 +5,7 @@ function checkLogin(v_name,v_pwd){
 		type:"get",
 		beforeSend:function(xhr){
 			var author = make_base_auth(v_name,v_pwd);
-			alert(author);
+			//alert(author);
 			xhr.setRequestHeader("Authorization",author);
 		},
 		success:function(data){

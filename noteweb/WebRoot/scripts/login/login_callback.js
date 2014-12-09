@@ -13,7 +13,7 @@ function login_success(data){
 		addCookie(key,Base64.encode(token),2);
 		document.cookie="userId"+"="+key+";"+"path=/"; 
 		document.cookie=key+"="+Base64.encode(token)+";"+"path=/"; 
-		alert(Base64.encode(token))
+		//alert(Base64.encode(token))
 		window.location.href="edit.html";
 	}
 }
