@@ -217,6 +217,7 @@ function move_note(ele){
 	var notebookId=$('#pc_part_2').data("notebook_id");
 	$('#can').load('./alert/alert_move.html',function(){
 		$('.opacity_bg').show();
+		$(".btn.btn-default.cancle").click(window_close);
 		$('.close').click(function(){
 			window_close();
 		});
