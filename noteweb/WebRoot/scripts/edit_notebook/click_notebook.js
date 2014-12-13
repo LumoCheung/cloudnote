@@ -74,7 +74,6 @@ function more(obj)
 		},function(){
 			//鼠标移走时取消下拉框的显示
 			$(".online div").css("display","none");
-			$("#"+id).css("display","none");
 		});
 		tID=setTimeout(function(){$(".online div").css("display","none");},1000);
 }
