@@ -172,7 +172,6 @@ function rec(obj)
 	//判断是否删除，弹出框
 	$('#can').load('./alert/alert_delete_note.html',function(){
 		//黑色背景的显示
-		$('#can').show
 		$(".opacity_bg").show();
 		//弹出框关闭按钮点击事件
 		$('.close').click(window_close);

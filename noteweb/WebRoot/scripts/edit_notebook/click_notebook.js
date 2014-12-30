@@ -1,21 +1,16 @@
 function click_notebook(notebook_ele){
 	var bookId=notebook_ele.id;
 	$('#pc_part_2').data("notebook_id",bookId);
+	$('#list_notebook a').removeClass("checked");
+	$(notebook_ele).find("a").addClass("checked");
 	$.ajax({
 		url:basepath+"/edit/isnull_notebook/"+notebook_ele.id,
 		type:"get",
 		success:function(data){
-			if(data.status=="0"){
-				$(notebook_ele).children('a').append("<button type='button' class='btn btn-default btn-xs btn_position btn_delete'><i class='fa fa-times'></i></button>");
-				
-				//$(notebook_ele).children('button').click(delete_notebook());
-			}else{
-				$("#pc_part_2 ul").empty();
+			$("#pc_part_2 ul").empty();
+			if(data.status!="0"){
 				list_note(data);
-				
 			}
-				
-			
 		}
 	});
 }

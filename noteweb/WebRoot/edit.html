@@ -308,6 +308,7 @@
 					$('#can').load('./alert/alert_error.html',function(){
 						$('#error_info').text(' '+e);
 						$('.opacity_bg').show();
+						$(".btn.btn-default.cancle").click(window_close);
 						$('.close').click(function(){
 							window_close();
 						});

@@ -16,15 +16,18 @@
 						$('#list_notebook').append("<li class='online'  id='notebook_"+data[0].status
 								+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class='checked'>"
 								+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
-								+data[0].message+"</a></li>"
+								+data[0].message
+								+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete'><i class='fa fa-times'></i></button>"
+								+"</a></li>"
 								);
 						for(var i=1;i<data.length;i++){
 							$('#list_notebook').append("<li class='online'  id='notebook_"+data[i].status
 							+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class=''>"
 							+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
-							+data[i].message+"</a></li>"
+							+data[i].message
+							+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete'><i class='fa fa-times'></i></button>"
+							+"</a></li>"
 							);
-							alert(i);
 						}
 						click_notebook(document.getElementById('list_notebook').childNodes.item(0));	
 					}
