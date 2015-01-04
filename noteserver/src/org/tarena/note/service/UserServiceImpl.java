@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService{
 		//颁发一个令牌和用户ID
 		Map map = new HashMap();
 		map.put("userId", user.getId());
+		map.put("name", user.getName());
 		map.put("token", NoteUtil.createUUID());
 		res.setData(map);
 		return res;

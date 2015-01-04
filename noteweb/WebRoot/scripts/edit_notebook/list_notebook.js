@@ -1,5 +1,5 @@
-	$(function(){
-   				
+$(function(){
+   		$(".profile-username").append(cookie("userName"));
 		list_notebook();
 });
 
