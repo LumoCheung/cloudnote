@@ -114,7 +114,7 @@ public class NoteServiceImpl implements NoteSrevice {
 	}
 
 	/**
-	 * 将你急放入到回收站中
+	 * 将笔记放入到回收站中
 	 * @param id
 	 * @return
 	 */

@@ -56,7 +56,7 @@ function addNote()
 					//应该从上一级的点击事件获取bookId和从cookies中获取userId
 					//var userId="48595f52-b22c-4485-9244-f4004255b972";
 					var bookId=$('#pc_part_2').data("notebook_id");
-					alert(bookId);
+					//alert(bookId);
 					$.ajax({
 						url:basepath+"/note/addnote/"+bookId+"/"+$("#input_note").val().trim(),
 						type:"POST",
@@ -69,8 +69,7 @@ function addNote()
 							//刷新笔记列表
 							get_notebook_list();
 							//编辑笔记列表显示当前笔记内容
-							
-							getContentAjax(data.data);
+							getContentAjax("noteId_"+data.data);
 						}
 					});
 				}

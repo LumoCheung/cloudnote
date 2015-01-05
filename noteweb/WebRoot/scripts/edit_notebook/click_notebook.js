@@ -1,6 +1,7 @@
 function click_notebook(notebook_ele){
 	var bookId=notebook_ele.id;
 	$('#pc_part_2').data("notebook_id",bookId);
+	//alert(bookId);
 	$('#list_notebook a').removeClass("checked");
 	$(notebook_ele).find("a").addClass("checked");
 	$.ajax({
