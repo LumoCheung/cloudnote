@@ -17,7 +17,7 @@ $(function(){
 								+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class='checked'>"
 								+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
 								+data[0].message
-								+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete'><i class='fa fa-times'></i></button>"
+								+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
 								+"</a></li>"
 								);
 						for(var i=1;i<data.length;i++){
@@ -25,7 +25,7 @@ $(function(){
 							+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class=''>"
 							+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
 							+data[i].message
-							+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete'><i class='fa fa-times'></i></button>"
+							+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
 							+"</a></li>"
 							);
 						}
@@ -38,4 +38,19 @@ $(function(){
 		});
 	}
 	
+	function delBook(obj)
+	{
+		var id=$(obj).parent().parent().attr("id");
+		alert(id);
+		//notebook id获取
+		//判断如果是默认笔记本，则不允许删除
+		//默认笔记本放在第一的位置上
+		//弹出框（是否删除该笔记本，若删除，则其中的所有笔记将自动移至默认笔记本？）
+		/*if(true)
+		 * $.ajax()//note/move
+		 * else
+		 * window_close();
+		 * 
+		 * */
+	}
 	

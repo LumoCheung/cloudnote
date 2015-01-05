@@ -1,4 +1,4 @@
-ï»¿.loader-timer {
+.loader-timer {
 	position: relative;
 	margin: 0;
 	width: 24px;
@@ -8738,7 +8738,8 @@ a:hover,a:focus {
 	display: inline-block;
 	line-height: 60px;
 	margin: 0;
-	padding-right: 10px
+	padding-right: 10px;
+	cursor: pointer;
 }
 
 .header-profile>.profile-nav.open,.header-profile>.profile-nav.open>a {
@@ -11122,7 +11123,7 @@ body.gallery-expand {
 	font-size:16px;
 	margin:0 0 0 15px;
 	color:#ecf0f1;
-	font-family:'å¾®è½¯é›…é»‘';
+	font-family:'Î¢ÈíÑÅºÚ';
 }
 .pc_top_third h3{
 	color:#13A89E;
@@ -11211,7 +11212,7 @@ body.gallery-expand {
 	text-align:center;
 	line-height:30px;
 	font-size:10px;
-	font-family:'å¾®è½¯é›…é»‘';
+	font-family:'Î¢ÈíÑÅºÚ';
 	color:#ECF0F1;
 	padding:0;
 }
@@ -11310,7 +11311,7 @@ a.checked button{
 #fifth_side_right h4{
 	height:50px;
 	line-height:50px;
-	font-family:'å¾®è½¯é›…é»‘';
+	font-family:'Î¢ÈíÑÅºÚ';
 	font-weight:400;
 	font-size:20px;
 	border:1px solid #E0E4E8;
