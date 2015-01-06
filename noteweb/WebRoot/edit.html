@@ -302,19 +302,9 @@
    		<script type="text/javascript" src="scripts/edit_notebook/click_notebook.js"></script>
    		<script type="text/javascript" src="scripts/edit_notebook/recover_note.js"></script>
    		<script type="text/javascript" src="scripts/note/note.js"></script>
+   		<script type="text/javascript" src="scripts/alert_util.js"></script>
 		<script type="text/javascript">
-			//重写JS原生alert函数
-				window.alert=function(e){
-					$('#can').load('./alert/alert_error.html',function(){
-						$('#error_info').text(' '+e);
-						$('.opacity_bg').show();
-						$(".btn.btn-default.cancle").click(window_close);
-						$('.close').click(function(){
-							window_close();
-						});
-						
-					});
-				}
+			
 			//获取笔记本列表
 			//get_nb_list();
 			//获取特殊笔记本ID
