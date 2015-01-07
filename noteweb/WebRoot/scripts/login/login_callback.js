@@ -15,7 +15,7 @@ function login_success(data){
 		document.cookie="userId"+"="+key+";"+"path=/"; 
 		document.cookie=key+"="+Base64.encode(token)+";"+"path=/"; 
 		alert(Base64.encode(token))
-		//window.location.href="edit.html";
+		window.location.href="edit.html";
 	}
 }
 
