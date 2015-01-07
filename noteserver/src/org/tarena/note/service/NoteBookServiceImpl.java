@@ -40,7 +40,7 @@ public class NoteBookServiceImpl implements NoteBookService{
 		}
 		return list;
 	}
-	public NoteResponse addNotebook(String notebookName,HttpServletRequest request){
+	public NoteResponse addNotebook(String notebookName,String userId){
 		NoteBook nb=new NoteBook();
 		nb.setNotebook_name(notebookName);
 		String uuid=NoteUtil.createUUID();
@@ -48,12 +48,6 @@ public class NoteBookServiceImpl implements NoteBookService{
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time=sdf.format(new Date());
 		nb.setNotebook_createtime(time);
-		Cookie c=cookie_util.cookie_findByName("userId", request.getCookies());
-		String userId="";
-		if(c!=null){
-			
-			 userId=c.getValue().substring(0, c.getValue().indexOf("_token"));
-		}
 		nb.setUser_id(userId);
 		noteBookDao.insertNotebook(nb);
 		NoteResponse n=new NoteResponse();

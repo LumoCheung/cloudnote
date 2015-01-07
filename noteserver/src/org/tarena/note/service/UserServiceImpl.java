@@ -1,9 +1,11 @@
 package org.tarena.note.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.tarena.note.dao.UserDao;
@@ -57,10 +59,13 @@ public class UserServiceImpl implements UserService{
 			return res;
 		}
 		user=new User();
-		user.setId(NoteUtil.createUUID());
+		String userId=NoteUtil.createUUID();
+		user.setId(userId);
 		user.setName(name);
 		user.setPassword(password);
 		dao.insertUser(user);
+		//这一步将进行默认笔记本的建立
+		new NoteBookServiceImpl().addNotebook("默认笔记本", userId);
 		res.setStatus("0");
 		res.setMessage("注册成功");
 		return res;

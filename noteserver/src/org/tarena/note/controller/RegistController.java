@@ -30,8 +30,8 @@ public class RegistController {
 		String[] author_arr=Base64Util.getMessage(request);
 		String name = author_arr[0];
 		String password = author_arr[1];
-		System.out.println(name+" "+password);
-		System.out.println(name+" "+MD5MessageDigest.md5(password));
+		System.out.println("注册"+name+" "+password);
+		//System.out.println(name+" "+MD5MessageDigest.md5(password));
 		NoteResponse res = 
 			service.regist(name, MD5MessageDigest.md5(password));
 		return res;

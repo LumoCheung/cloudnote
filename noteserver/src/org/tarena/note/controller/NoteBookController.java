@@ -41,7 +41,12 @@ public class NoteBookController {
 	@RequestMapping(value="/addnotebook/{notebookName}",method=RequestMethod.PUT)
 	@ResponseBody
 	public NoteResponse addnotebook(@PathVariable("notebookName")String notebookName,HttpServletRequest request){
-		NoteResponse n=noteBookService.addNotebook(notebookName,request);
+		Cookie c=cookie_util.cookie_findByName("userId", request.getCookies());
+		String userId="";
+		if(c!=null){
+			 userId=c.getValue().substring(0, c.getValue().indexOf("_token"));
+		}
+		NoteResponse n=noteBookService.addNotebook(notebookName,userId);
 		return n;
 	}
 	

@@ -10,9 +10,12 @@ $(function(){
 			url:basepath+"/edit/listnotebook",
 			type:"get",	
 			success:function(data){
-
 				if(getCookie("userId")!=null){
 					if(data.length>0){
+
+						//判断第一个是否是默认笔记本，是的话顺序，不是则进行重新排序
+						if()
+						
 						$('#list_notebook').append("<li class='online'  id='notebook_"+data[0].status
 								+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class='checked'>"
 								+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
