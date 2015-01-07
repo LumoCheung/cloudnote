@@ -12,25 +12,39 @@ $(function(){
 			success:function(data){
 				if(getCookie("userId")!=null){
 					if(data.length>0){
-
-						//判断第一个是否是默认笔记本，是的话顺序，不是则进行重新排序
-						//if()
-						
-						$('#list_notebook').append("<li class='online'  id='notebook_"+data[0].status
-								+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class='checked'>"
-								+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
-								+data[0].message
-								+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
-								+"</a></li>"
-								);
-						for(var i=1;i<data.length;i++){
+						var index=-1;
+						for(var i=0;i<data.length;i++){
+						//寻找默认笔记本
+							if(data[i].data=="6")
+							{
+								$('#list_notebook').append("<li class='online'  id='notebook_"+data[i].status
+										+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class='checked'>"
+										+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
+										+data[i].message
+										+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
+										+"</a></li>"
+										);
+								index=i;
+								break;
+							}
+						}
+						for(var i=0;i<index;i++)
+						{
 							$('#list_notebook').append("<li class='online'  id='notebook_"+data[i].status
-							+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class=''>"
-							+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
-							+data[i].message
-							+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
-							+"</a></li>"
-							);
+									+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class=''>"
+									+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
+									+data[i].message
+									+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
+									+"</a></li>");
+						}
+						for(var i=index+1;i<data.length;i++)
+						{
+							$('#list_notebook').append("<li class='online'  id='notebook_"+data[i].status
+									+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class=''>"
+									+"<i class='fa fa-book' title='online' rel='tooltip-bottom' ></i>"
+									+data[i].message
+									+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='delBook(this)'><i class='fa fa-times'></i></button>"
+									+"</a></li>");
 						}
 						click_notebook(document.getElementById('list_notebook').childNodes.item(0));	
 					}

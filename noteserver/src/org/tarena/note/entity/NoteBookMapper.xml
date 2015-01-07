@@ -13,7 +13,7 @@
 		from cn_notebook where cn_user_id=#{user_id} 
 	</select>
 	<insert id="insertNotebook" parameterType="org.tarena.note.entity.NoteBook">
-		insert into cn_notebook(cn_notebook_id,cn_notebook_name,cn_notebook_createtime,cn_user_id)values(#{notebook_id},#{notebook_name},#{notebook_createtime},#{user_id})
+		insert into cn_notebook(cn_notebook_id,cn_notebook_name,cn_notebook_createtime,cn_user_id,cn_notebook_type_id)values(#{notebook_id},#{notebook_name},#{notebook_createtime},#{user_id},#{type_id})
 	</insert>
 	<update id="rename_notebook" parameterType="org.tarena.note.entity.NoteResponse">
 		update cn_notebook set cn_notebook_name=#{status} where cn_notebook_id=#{message}

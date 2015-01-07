@@ -2,14 +2,12 @@ package org.tarena.note.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.springframework.stereotype.Service;
 import org.tarena.note.dao.NoteBookDao;

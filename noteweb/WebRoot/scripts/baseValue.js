@@ -1,1 +1,1 @@
-var basepath = "http://localhost:8080/noteserver";
+var basepath = "http://192.168.56.1:8080/noteserver";

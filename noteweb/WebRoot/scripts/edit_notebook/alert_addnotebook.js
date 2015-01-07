@@ -1,5 +1,5 @@
 function addnotebook(){
-	$ .ajax({
+	$.ajax({
 		url:basepath+"/edit/addnotebook/"+$(input_notebook).val(),
 		type:"put",
 		success:function(data){

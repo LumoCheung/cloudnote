@@ -1,5 +1,6 @@
 package org.tarena.note.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.tarena.note.entity.Note;
 import org.tarena.note.entity.NoteResponse;
 import org.tarena.note.service.NoteBookService;
 import org.tarena.note.service.NoteSrevice;
@@ -37,15 +37,18 @@ public class NoteBookController {
 	 * @param notebookName  要传入新建笔记本的名称
 	 * @param request	通过HttpServletRequest来获取客户端的userId在创建时候加入
 	 * @return	返回一个NoteResponse信息来储存新建笔记本的信息，Status来储存notebook_id   Message来存储notebook_name
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value="/addnotebook/{notebookName}",method=RequestMethod.PUT)
 	@ResponseBody
-	public NoteResponse addnotebook(@PathVariable("notebookName")String notebookName,HttpServletRequest request){
+	public NoteResponse addnotebook(@PathVariable("notebookName")String notebookName,HttpServletRequest request) throws UnsupportedEncodingException{
 		Cookie c=cookie_util.cookie_findByName("userId", request.getCookies());
+		notebookName = new String(notebookName.getBytes("iso8859-1"),"utf-8");
 		String userId="";
 		if(c!=null){
 			 userId=c.getValue().substring(0, c.getValue().indexOf("_token"));
 		}
+		System.out.println(notebookName);
 		NoteResponse n=noteBookService.addNotebook(notebookName,userId,"5");
 		return n;
 	}
