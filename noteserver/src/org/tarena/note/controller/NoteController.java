@@ -2,6 +2,7 @@ package org.tarena.note.controller;
 
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -42,11 +43,13 @@ public class NoteController {
 	 * @param userId
 	 * @param bookId
 	 * @return NoteResponse
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value="/addnote/{notebook_id}/{note_title}",method=RequestMethod.POST)
 	@ResponseBody
-	public NoteResponse addNote(@PathVariable("note_title")String title,@PathVariable("notebook_id")String bookId,HttpServletRequest request)
+	public NoteResponse addNote(@PathVariable("note_title")String title,@PathVariable("notebook_id")String bookId,HttpServletRequest request) throws UnsupportedEncodingException
 	{
+		title=new String(title.getBytes("iso-8859-1"),"utf-8");
 		System.out.println("笔记的标题"+title+"笔记本的notebook"+bookId);
 		return noteSrevice.creat_note(bookId, title,request);
 		
