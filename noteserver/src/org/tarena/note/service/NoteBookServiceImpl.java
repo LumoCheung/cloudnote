@@ -29,18 +29,19 @@ public class NoteBookServiceImpl implements NoteBookService{
 	private NoteDao noteDao;
 	public List<NoteResponse> listAllNoteBook(HttpServletRequest request) {
 		Cookie c= cookie_util.cookie_findByName("userId", request.getCookies());
-		
 		List<NoteBook> listNoteBook= noteBookDao.findAllNoteBook(c.getValue().split("_")[0]);
+		System.out.println("list "+c.getValue().split("_")[0]);
 		List<NoteResponse>list=new ArrayList<NoteResponse>();
 		for(NoteBook nb:listNoteBook){
 			NoteResponse n=new NoteResponse();
 			n.setStatus(nb.getNotebook_id());
 			n.setMessage(nb.getNotebook_name());
+			n.setData(nb.getType_id());
 			list.add(n);
 		}
 		return list;
 	}
-	public NoteResponse addNotebook(String notebookName,String userId){
+	public NoteResponse addNotebook(String notebookName,String userId,String typeId){
 		NoteBook nb=new NoteBook();
 		nb.setNotebook_name(notebookName);
 		String uuid=NoteUtil.createUUID();
@@ -49,6 +50,7 @@ public class NoteBookServiceImpl implements NoteBookService{
 		String time=sdf.format(new Date());
 		nb.setNotebook_createtime(time);
 		nb.setUser_id(userId);
+		nb.setType_id(typeId);
 		noteBookDao.insertNotebook(nb);
 		NoteResponse n=new NoteResponse();
 		n.setStatus(uuid);

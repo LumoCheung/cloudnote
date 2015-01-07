@@ -19,7 +19,7 @@ public interface NoteBookService {
 	 * @param request	将用户名字添加进去
 	 * @return	返回的笔记本得数据
 	 */
-	public NoteResponse addNotebook(String notebookName,String userId);
+	public NoteResponse addNotebook(String notebookName,String userId,String typeId);
 	
 	/**
 	 * 重命名笔记本	

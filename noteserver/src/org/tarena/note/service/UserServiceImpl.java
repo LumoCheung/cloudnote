@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.tarena.note.dao.NoteBookDao;
 import org.tarena.note.dao.UserDao;
 import org.tarena.note.entity.NoteResponse;
 import org.tarena.note.entity.User;
@@ -43,13 +44,13 @@ public class UserServiceImpl implements UserService{
 		//颁发一个令牌和用户ID
 		Map map = new HashMap();
 		map.put("userId", user.getId());
-		map.put("name", user.getName());
+		map.put("nick", user.getNickName());
 		map.put("token", NoteUtil.createUUID());
 		res.setData(map);
 		return res;
 	}
 
-	public NoteResponse regist(String name, String password) {
+	public NoteResponse regist(String name, String password,String nickName) {
 		// TODO Auto-generated method stub
 		NoteResponse res = new NoteResponse();
 		User user = dao.findByName(name);
@@ -63,11 +64,11 @@ public class UserServiceImpl implements UserService{
 		user.setId(userId);
 		user.setName(name);
 		user.setPassword(password);
+		user.setNickName(nickName);
 		dao.insertUser(user);
-		//这一步将进行默认笔记本的建立
-		new NoteBookServiceImpl().addNotebook("默认笔记本", userId);
 		res.setStatus("0");
 		res.setMessage("注册成功");
+		res.setData(userId);
 		return res;
 	}
 

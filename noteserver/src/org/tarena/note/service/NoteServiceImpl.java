@@ -58,7 +58,6 @@ public class NoteServiceImpl implements NoteSrevice {
 	public NoteResponse creat_note(String bookId,String title,HttpServletRequest request) 
 	{
 		String userId=cookie_util.cookie_findByName("userId", request.getCookies()).getValue().split("_")[0];
-		//System.out.println("lallaalla"+userId);
 		Note note=new Note();
 		//userId,noteBookId,title
 		note.setUser_id(userId);
@@ -78,7 +77,7 @@ public class NoteServiceImpl implements NoteSrevice {
 		//创建
 		notedao.creat_note(note);
 		NoteResponse res=Resopnse_util.setRes("创建成功");
-		System.out.println(note.getNote_id());
+		//System.out.println(note.getNote_id());
 		res.setData(note.getNote_id());
 		return res;
 	}

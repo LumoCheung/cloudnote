@@ -17,5 +17,5 @@ public interface UserService {
 	public NoteResponse checkLogin(
 			String name,String password);
 	
-	public NoteResponse regist(String name,String pwd);
+	public NoteResponse regist(String name,String pwd,String nickName);
 }

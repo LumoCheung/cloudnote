@@ -1,5 +1,5 @@
 $(function(){
-   		$(".profile-username").append(cookie("userName"));
+   		$(".profile-username").append(cookie("nickName"));
 		list_notebook();
 });
 
@@ -14,7 +14,7 @@ $(function(){
 					if(data.length>0){
 
 						//判断第一个是否是默认笔记本，是的话顺序，不是则进行重新排序
-						if()
+						//if()
 						
 						$('#list_notebook').append("<li class='online'  id='notebook_"+data[0].status
 								+"' ondblclick='rename_notebook(this)' onmouseover='click_notebook(this)' onmouseout=''><a class='checked'>"

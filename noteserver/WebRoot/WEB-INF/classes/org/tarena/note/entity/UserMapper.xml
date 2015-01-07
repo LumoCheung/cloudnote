@@ -9,13 +9,14 @@
 			cn_user_name name,
 			cn_user_password password,
 			cn_user_token token,
-			cn_user_desc descr
+			cn_user_desc descr,
+			cn_user_nick nickName
 		from cn_user
 		where cn_user_name=#{name} 
 	</select>
 	<insert id="insertUser" parameterType="org.tarena.note.entity.User">
-	insert into cn_user(cn_user_id,cn_user_name,cn_user_password,cn_user_token,cn_user_desc)
-	values(#{id},#{name},#{password},#{token},#{descr})
+	insert into cn_user(cn_user_id,cn_user_name,cn_user_password,cn_user_token,cn_user_desc,cn_user_nick)
+	values(#{id},#{name},#{password},#{token},#{descr},#{nickName})
 	</insert>
 
 	

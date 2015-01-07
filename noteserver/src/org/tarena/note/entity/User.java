@@ -12,6 +12,7 @@ public class User implements Serializable{
 	private String password;
 	private String token;
 	private String descr;
+	private String nickName;
 	public String getId() {
 		return id;
 	}
@@ -42,4 +43,11 @@ public class User implements Serializable{
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	
 }

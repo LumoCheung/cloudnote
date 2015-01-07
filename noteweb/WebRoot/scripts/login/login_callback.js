@@ -6,12 +6,13 @@ function login_success(data){
 		
 		$("#password_span").html(data.message);
 	}else if(data.status == "0"){
-		var userName=data.data.name;
+		var nickName=data.data.nick;
 		var uid = data.data.userId;
 		var token = data.data.token;
 		var key = uid+"_token";
 		addCookie(key,Base64.encode(token),2);
-		document.cookie="userName"+"="+userName+";"+"path=/";
+		//改为昵称，加入到cookie
+		document.cookie="nickName"+"="+nickName+";"+"path=/";
 		document.cookie="userId"+"="+key+";"+"path=/"; 
 		document.cookie=key+"="+Base64.encode(token)+";"+"path=/"; 
 		alert(Base64.encode(token))
