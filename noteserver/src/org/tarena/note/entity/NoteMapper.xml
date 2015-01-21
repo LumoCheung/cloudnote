@@ -86,4 +86,8 @@
 		select cn_note_id note_id,
 		cn_note_title note_title,cn_note_status_id note_status_id from cn_note where cn_notebook_id=#{id} and cn_note_status_id='1' 
 	</select>
+	<!-- 批量移动笔记 -->
+	<update id="batch_move_note" parameterType="org.tarena.note.entity.NoteResponse">
+		update cn_note set cn_notebook_id=#{status} where cn_notebook_id=#{message}
+	</update>
  </mapper>

@@ -108,6 +108,18 @@ public class NoteBookController {
 		return nr;
 	} 
 	
-	
+	/**
+	 * 用户删除笔记本
+	 * @param note_id
+	 * @return
+	 */
+	@RequestMapping(value="/deletenotebook/{notebook_id}",method=RequestMethod.POST)
+	@ResponseBody
+	public NoteResponse deleteBook(@PathVariable("notebook_id")String bookId,HttpServletRequest request){
+		Cookie c=cookie_util.cookie_findByName("userId", request.getCookies());
+		String userId=c.getValue();
+		userId=userId.split("_")[0];
+		return noteBookService.deleteBook(bookId,userId);
+	} 
 	
 }

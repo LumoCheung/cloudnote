@@ -74,12 +74,12 @@ public class NoteBookServiceImpl implements NoteBookService{
 	 */
 	public NoteResponse isnull_notebook(String notebook_id){
 		NoteResponse nr=new NoteResponse();
-		int count= noteBookDao.countnote_notebook(notebook_id.substring(9));
-		System.out.println("笔记本重数量"+count);
+		int count= noteBookDao.countnote_notebook(notebook_id.split("_")[1]);
+		System.out.println("笔记本的数量"+count);
 		if(count>0){
 			nr.setStatus("1");
 			
-				List<Note> list=noteDao.findByNoteBookId(notebook_id.substring(9));
+				List<Note> list=noteDao.findByNoteBookId(notebook_id.split("_")[1]);
 				nr.setData(list);
 						
 		}else{
@@ -99,6 +99,23 @@ public class NoteBookServiceImpl implements NoteBookService{
 		List<Note>list=(List<Note>)nr.getData();
 		//System.out.println(list.get(0).getNote_title());
 		//System.out.println("+++++++++++"+nr.getData().toString(););
+		return nr;
+	}
+	/**
+	 * 删除笔记本，笔记将放入到默认笔记本
+	 */
+	public NoteResponse deleteBook(String bookId,String userId) {
+		NoteBook refalutBook=noteBookDao.findFaultBook(userId);
+		NoteResponse nr=new NoteResponse();
+		//将默认笔记本的id放到status里，要删除的笔记本id放到message里
+		nr.setStatus(refalutBook.getNotebook_id());
+		nr.setMessage(bookId);
+		//批量移动
+		noteDao.batch_move_note(nr);
+		//删除笔记本
+		noteBookDao.deleteBook(bookId);
+		nr.setStatus("1");
+		nr.setMessage("删除成功");
 		return nr;
 	}
 	

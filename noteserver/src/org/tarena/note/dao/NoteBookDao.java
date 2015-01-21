@@ -31,6 +31,18 @@ public interface NoteBookDao {
 	 * @return	返回当前选中笔记本中的笔记数
 	 */
 	public int countnote_notebook(String notebook_id); 
-
+	
+	/**
+	 * 查找默认的笔记本
+	 * @param userId
+	 * @return
+	 */
+	public NoteBook findFaultBook(String userId);
+	
+	/**
+	 *删除笔记本
+	 * @param bookId
+	 */
+	public void deleteBook(String bookId);
 	
 }

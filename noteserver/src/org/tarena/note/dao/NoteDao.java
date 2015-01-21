@@ -86,4 +86,6 @@ public interface NoteDao {
 	public List<Note> findByKeywords(String keywords);
 	
 	public List<Note> list_collect_note(String userId);
+	
+	public void batch_move_note(NoteResponse response);
 }

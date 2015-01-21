@@ -39,4 +39,10 @@ public interface NoteBookService {
 	 * @return
 	 */
 	public NoteResponse list_recovernote(HttpServletRequest request );
+	/**
+	 * 删除笔记本
+	 * @param bookId
+	 * @return
+	 */
+	public NoteResponse deleteBook(String bookId,String userId);
 }

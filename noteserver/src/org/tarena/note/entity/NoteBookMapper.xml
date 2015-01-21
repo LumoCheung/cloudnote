@@ -22,6 +22,20 @@
 		select count(*) from cn_note where cn_notebook_id=#{no} 
 	</select>
 	
+	<!-- 查找默认笔记本 -->
+	<select id="findFaultBook" parameterType="string"
+		resultType="org.tarena.note.entity.NoteBook">
+		select cn_notebook_id notebook_id,
+			cn_user_id user_id,
+			cn_notebook_type_id type_id,
+			cn_notebook_name notebook_name,
+			cn_notebook_desc notebook_desc,
+			cn_notebook_createtime notebook_createtime
+		from cn_notebook where cn_user_id=#{userId} and cn_notebook_type_id='6'
+	</select>
 	
-	
+	<!-- 删除笔记本 -->
+	<delete id="deleteBook" parameterType="String">
+	delete from cn_notebook where cn_notebook_id=#{bookId}
+	</delete>
 </mapper>
