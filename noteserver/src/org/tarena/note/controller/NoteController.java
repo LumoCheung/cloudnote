@@ -118,9 +118,9 @@ public class NoteController {
 	}
 	
 	@RequestMapping(value="/move_note/{notebook_id}/{noteId}",method=RequestMethod.GET)
+	@ResponseBody
 	public NoteResponse move_note(@PathVariable("noteId")String noteId,@PathVariable("notebook_id")String notebook_id){
 		return noteSrevice.move_note(notebook_id,noteId);
-		//return null;
 	}
 	
 	

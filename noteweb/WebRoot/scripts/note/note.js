@@ -32,9 +32,6 @@ function cathKeyPress(){
 	});
 }
 
-function test(){
-	alert($('#pc_part_2').data("notebook_id"))
-}
 //添加新笔记
 function addNote()
 {
@@ -94,7 +91,6 @@ function get_notebook_list()
 				}else{
 					$("#pc_part_2 ul").empty();
 					list_note(data);
-					
 				}
 			}
 		});
@@ -224,6 +220,7 @@ function move_note(ele){
 		$('#btn_sure').bind("click",noteId,function(){
 			movenote_rollback(noteId);
 			window_close();
+			//list_notebook();
 		});
 	});
 }
@@ -236,8 +233,6 @@ function movenote_rollback(noteId){
 		type:'get',
 		success:function(data){
 			get_notebook_list();
-			alert(data.message);
-			
 		}
 	});
 }
