@@ -134,7 +134,7 @@ function myEdit(note,flag)
 	}
 	//预览框
 	else{
-		$("#noput_note_title").val(note.note_title);
+		$("#noput_note_title").html(note.note_title);
 		$("#myPage").html(note.note_body);
 	}
 }

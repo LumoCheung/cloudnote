@@ -12,9 +12,9 @@ function recover_note(note){
 					"<button type='button'  class='btn btn-default btn-xs btn_position_2 btn_replay' onclick='event.cancelBubble=true;list_remove_btn(this)'><i class='fa fa-reply'></i></button></a></li>");
 	*/
 	$('#four_side_right ul').append("<li class='disable'><a id='noteid_"+note.note_id
-	+"' ondblclick='getContent(this,2)' ><i class='fa fa-file-text-o' title='online' rel='tooltip-bottom'></i>"
-	+note.note_title+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='list_del_btn(this)'>"
-	+"<i class='fa fa-times'></i></button><button type='button' class='btn btn-default btn-xs btn_position_2 btn_replay' onclick='list_remove_btn(this)'>"
+	+"' onclick='getContent(this,2)' ><i class='fa fa-file-text-o' title='online' rel='tooltip-bottom'></i>"
+	+note.note_title+"<button type='button' class='btn btn-default btn-xs btn_position btn_delete' onclick='event.cancelBubble=true;list_del_btn(this)'>"
+	+"<i class='fa fa-times'></i></button><button type='button' class='btn btn-default btn-xs btn_position_2 btn_replay' onclick='event.cancelBubble=true;list_remove_btn(this)'>"
 	+"<i class='fa fa-reply'></i></button></a></li>");
 }
 
@@ -38,6 +38,8 @@ function list_recovernote(){
 		success:function(data){
 			//alert(data.data.length)
 			$('#four_side_right ul').html("");
+			$("#noput_note_title").html("");
+			$("#myPage").html("");
 			if(data.data.length<1){
 				alert("回收站为空");
 			}else{

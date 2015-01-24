@@ -24,13 +24,13 @@ function list_note(data){
 		var s=list[i];
 		var s1='<li class="online">'
 			//此处绑定noteId
-			+'<a id="noteId_'+s.note_id+'" ondblclick="getContent(this,1)">';
+			+'<a id="noteId_'+s.note_id+'" onclick="getContent(this,1)">';
 		var s4='<i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>';
 		//共享图标
 		var s2=' <i class="fa fa-sitemap" title="shared" rel="tooltip-bottom"></i>';
 		var s3=s.note_title//此处绑定题目
 			//此处绑定列表的行数id（in）
-			+'<button type="button" id="i'+i+'" class="btn btn-default btn-xs btn_position btn_slide_down" onclick="more(this);" ><i class="fa fa-chevron-down"></i></button>'
+			+'<button type="button" id="i'+i+'" class="btn btn-default btn-xs btn_position btn_slide_down" onclick="event.cancelBubble=true;more(this);" ><i class="fa fa-chevron-down"></i></button>'
 			+'</a>'
 			//此处绑定列表的下拉框id（divin），和列表行数id有关，可以通过简单的操作获取当前的下拉框
 			+'<div id="divi'+i+'" class="note_menu" tabindex="-1">'
