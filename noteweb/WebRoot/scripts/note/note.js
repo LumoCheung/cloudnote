@@ -286,33 +286,40 @@ function recAjax()
 function search_success(data){
 	if(data.status=="1"){
 		alert("未查询到结果");
-		
 	//如果status==0 则成功查到笔记 在消息头中获取笔记 
 	}else if(data.status=="0"){
 		$('#sixth_side_right .contacts-list').empty();
-	//从cookie中获取当前登录网页用户的id
-		//var userId="2273f742-61ec-4440-b88a-42cf48db19ff";
-		
 		var list=data.data;
 		var noteNode="";
 		//把查询到的结果显示在页面上
 		/**点收藏按钮触发方法collect(id)收藏笔记*/
 		/**获取笔记id，点击触发showNoteDetail(id)方法*/
-		for(var i=0;i<list.length;i++){		
-			var title=list[i].note_title;
-			var noteId=list[i].note_id;
-			//把用户id和笔记id放在一起发送值服务器
-			var id=list[i].note_id;
-			$("#pc_part_2").css('display','none');
-			$("#pc_part_6").css('display','block');
-			noteNode="<li  class='online'><a>" +
-					"<i class='fa fa-file-text-o' title='online' rel='tooltip-bottom'></i>" +
-					"<i id='i_"+noteId+"' onclick='getContentAjax(this.id,1);'><span>" +title+"</span></i>&nbsp;&nbsp;" +
-					"<button class='btn btn-default btn-xs btn-position btn_like' id="+id+" title='收藏笔记'onclick='collect(this.id);'" +
-					"style='font-size:10px;line-height:11px;'><i class='fa fa-star'></i></button>"
-			$('#sixth_side_right .contacts-list').append(noteNode);
-		}	
+		//判断更多的情况，保持大量数据显示在界面上
+		if(list.length<=20){
+			searchItem(list.length);
+			$("#more_note").css("display","none");
+		}
+		else{
+			searchItem(10);
+			$("#more_note").css("display","block");
+		}
+		
 	}
+}
+function searchItem(length){
+	for(var i=0;i<length;i++){	
+		var title=list[i].note_title;
+		var noteId=list[i].note_id;
+		//把用户id和笔记id放在一起发送值服务器
+		var id=list[i].note_id;
+		showDiv(6,5);
+		noteNode="<li  class='online'><a>" +
+				"<i class='fa fa-file-text-o' title='online' rel='tooltip-bottom'></i>" +
+				"<i id='i_"+noteId+"' onclick='getContentAjax(this.id,2);'><span>" +title+"</span></i>&nbsp;&nbsp;" +
+				"<button class='btn btn-default btn-xs btn-position btn_like' id="+id+" title='收藏笔记'onclick='collect(this.id);'" +
+				"style='font-size:10px;line-height:11px;'><i class='fa fa-star'></i></button>"
+		$('#sixth_side_right .contacts-list').append(noteNode);
+	}	
 }
 
 /**把要收藏的笔记的id发送至服务器*/

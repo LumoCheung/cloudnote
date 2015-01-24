@@ -5,9 +5,19 @@
  	<delete id="delete_note" parameterType="string" >
  		delete from cn_note where cn_note_id=#{note_id}
  	</delete>
+ 	
+ 	<!-- 5为永久删除(暂时不用，二次开发使用) -->
+ 	<!-- <update id="delete_note" parameterType="string" >
+ 		update cn_note set 
+ 		cn_note_status_id = '5'
+ 		where cn_note_id=#{id};
+ 	</update> -->
+ 	
+ 	<!-- 1为正常 -->
  	<update id="replay_recover_note" parameterType="org.tarena.note.entity.NoteResponse">
- 		update cn_note set cn_note_status_id='5',cn_notebook_id=#{status} where cn_note_id=#{message}
+ 		update cn_note set cn_note_status_id='1',cn_notebook_id=#{status} where cn_note_id=#{message}
  	</update>
+ 	
  	<select id="findByNoteBookId" parameterType="string" resultType="org.tarena.note.entity.Note">
 		select cn_note_id note_id,
 		cn_note_title note_title,cn_note_status_id note_status_id from cn_note where cn_notebook_id=#{id} and cn_note_status_id!='2' 
@@ -45,6 +55,7 @@
  	</update>
  	
  	<!-- 笔记放入回收站 -->
+ 	<!-- 2为回收站 -->
  	<update id="recoverById" parameterType="String" >
  		update cn_note set 
  		cn_note_status_id = '2'
@@ -52,6 +63,7 @@
  	</update>
  	
  	<!-- 笔记分享修改 -->
+ 	<!-- 4为分享 -->
  	<update id="shareById" parameterType="String">
  		update cn_note set
  		cn_note_status_id='4'
@@ -72,10 +84,11 @@
 	</update>
 	
 	<!-- 根据关键字查询共享笔记(注意：笔记需要是共享状态，默认所有笔记都是共享状态)-->
+	<!-- 二次开发为将共享笔记添加到共享笔记的表中，可以减少检索时间 -->
 	<select id="findByKeywords" parameterType="string"
 		resultType="org.tarena.note.entity.Note">
 		select cn_note_title note_title,cn_note_id note_id
-		from cn_note where cn_note_title like concat('%',#{keywords},'%') and cn_note_status_id='4'
+		from cn_note where cn_note_title like #{keywords} and cn_note_status_id='4'
 		<!-- and cn_note_status_id = 4 -->
 	</select>
 	<select id="judge_collect" parameterType="string" resultType="org.tarena.note.entity.Note">

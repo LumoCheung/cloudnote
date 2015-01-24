@@ -1,5 +1,6 @@
 package org.tarena.note.service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.tarena.note.dao.NoteBookDao;
 import org.tarena.note.dao.NoteDao;
 import org.tarena.note.entity.Note;
 import org.tarena.note.entity.NoteBook;
@@ -105,7 +105,7 @@ public class NoteServiceImpl implements NoteSrevice {
 
 	
 	/**
-	 * 分享笔记
+	 * 分享笔记(将分享的笔记加入到分享笔记的表中)
 	 */
 	public NoteResponse share(String id) {
 		notedao.shareById(id.split("_")[1]);
@@ -158,6 +158,13 @@ public class NoteServiceImpl implements NoteSrevice {
 	/**根据关键字查询笔记 并将查询结果封装到NoteRespone中*/
 	public NoteResponse searchNote(String keywords) {
 		NoteResponse res=new NoteResponse();
+		keywords="%"+keywords+"%";
+		try {
+			keywords=new String(keywords.getBytes("iso-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		List<Note> list=notedao.findByKeywords(keywords);//将查询到的笔记存入该list
 		/**若list为空，则笔记未找到*/
 		if(list.isEmpty()){
