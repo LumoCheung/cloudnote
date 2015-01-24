@@ -5,6 +5,8 @@ $(function(){
 
 	
 	function list_notebook(){
+		//全部笔记和编辑笔记
+		showDiv(2,3);
 		$('#list_notebook').html("");
 		$.ajax({
 			url:basepath+"/edit/listnotebook",

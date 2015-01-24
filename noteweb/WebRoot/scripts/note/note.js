@@ -66,7 +66,7 @@ function addNote()
 							//刷新笔记列表
 							get_notebook_list();
 							//编辑笔记列表显示当前笔记内容
-							getContentAjax("noteId_"+data.data);
+							getContentAjax("noteId_"+data.data,1);
 						}
 					});
 				}
@@ -97,15 +97,15 @@ function get_notebook_list()
 	}
 
 //传入的是noteid_
-function getContent(obj)
+function getContent(obj,flag)
 {
 	var id=$(obj).attr("id");
-	getContentAjax(id);
+	getContentAjax(id,flag);
 }
 
 
 //获得内容的ajax
-function getContentAjax(id)
+function getContentAjax(id,flag)
 {
 	$("#pc_part_2 a").removeClass("checked");
 	//笔记选中
@@ -119,14 +119,25 @@ function getContentAjax(id)
 				//返回为json，json的data属性是list，list中只有一个值
 				//这里没有做更多的健全性处理
 				var note=list[0];
-				//alert(data);
-				$("#input_note_title").val(note.note_title);
-				$("#myEditor").html(note.note_body);
+				//
+				myEdit(note,flag);
 			}
 	});
 }
-
-
+//编辑框(预览框)内容获得
+function myEdit(note,flag)
+{
+	//编辑框
+	if(flag==1){
+		$("#input_note_title").val(note.note_title);
+		$("#myEditor").html(note.note_body);
+	}
+	//预览框
+	else{
+		$("#noput_note_title").val(note.note_title);
+		$("#myPage").html(note.note_body);
+	}
+}
 
 //保存修改
 function save()
@@ -148,7 +159,7 @@ function save()
 				//刷次笔记列表
 				get_notebook_list();
 				//刷新编辑笔记
-				getContentAjax(noteId);
+				getContentAjax(noteId,1);
 				alert(data.message);
 			}
 		});
@@ -296,7 +307,7 @@ function search_success(data){
 			$("#pc_part_6").css('display','block');
 			noteNode="<li  class='online'><a>" +
 					"<i class='fa fa-file-text-o' title='online' rel='tooltip-bottom'></i>" +
-					"<i id='i_"+noteId+"' onclick='getContentAjax(this.id);'><span>" +title+"</span></i>&nbsp;&nbsp;" +
+					"<i id='i_"+noteId+"' onclick='getContentAjax(this.id,1);'><span>" +title+"</span></i>&nbsp;&nbsp;" +
 					"<button class='btn btn-default btn-xs btn-position btn_like' id="+id+" title='收藏笔记'onclick='collect(this.id);'" +
 					"style='font-size:10px;line-height:11px;'><i class='fa fa-star'></i></button>"
 			$('#sixth_side_right .contacts-list').append(noteNode);

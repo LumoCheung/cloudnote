@@ -1,4 +1,5 @@
 function click_notebook(notebook_ele){
+	showDiv(2,3);
 	var bookId=notebook_ele.id;
 	$('#pc_part_2').data("notebook_id",bookId);
 	//alert(bookId);
@@ -23,7 +24,7 @@ function list_note(data){
 		var s=list[i];
 		var s1='<li class="online">'
 			//此处绑定noteId
-			+'<a id="noteId_'+s.note_id+'" ondblclick="getContent(this)">';
+			+'<a id="noteId_'+s.note_id+'" ondblclick="getContent(this,1)">';
 		var s4='<i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>';
 		//共享图标
 		var s2=' <i class="fa fa-sitemap" title="shared" rel="tooltip-bottom"></i>';

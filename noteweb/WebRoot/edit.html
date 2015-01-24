@@ -117,7 +117,7 @@
 						<div class="chat-contact">
 							<div class="contact-body">
 								<ul class="contacts-list">
-									<li class="disable"><a ><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 虚假回收站笔记<button type="button" class="btn btn-default btn-xs btn_position btn_delete"><i class="fa fa-times"></i></button><button type="button" class="btn btn-default btn-xs btn_position_2 btn_replay"><i class="fa fa-reply"></i></button></a></li>
+									
 								</ul>
 							</div>
 						</div>
@@ -231,7 +231,7 @@
 						<div class="chat-contact">
 							<div class="contact-body clear_margin">
 								<h4 id="noput_note_title"></h4>
-								<p>
+								<p id="myPage">
 								</p>
 							</div>
 						</div>
@@ -329,7 +329,16 @@
 							$(".btn.btn-default.cancle").click(window_close);
 						});
 					});	
-			
+			//div的关闭和显示
+			function showDiv(flag1,flag2){
+				for(i=2;i<9;i++)
+				{
+					if(i==flag1||i==flag2)
+					  	$("#pc_part_"+i).css("display","block");
+					else
+					 	$("#pc_part_"+i).css("display","none");
+				}
+			}
 			
 		</script>
 		</body>		
