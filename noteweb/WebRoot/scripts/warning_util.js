@@ -31,9 +31,17 @@ function finPwd(){
 function cNick(){
 	var name=get('nickname').value;
 	if(name==""){
+		get('warning_4').innerHTML="";
+		get('warning_4').innerHTML="<span>昵称不能为空</span>";
 		get('warning_4').style.display='block';
 		return true;
 	}
+	if((/[\u4e00-\u9fa5]+/g).test(name)){   
+		get('warning_4').innerHTML="";  
+		get('warning_4').innerHTML="<span>不能含有汉字</span>";
+		get('warning_4').style.display='block';
+	     return true;
+	  }  
 	return false;
 }
 /**

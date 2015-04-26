@@ -30,14 +30,14 @@
             </div>
             <div class="header-profile">
                 <div class="profile-nav">
-                    <span class="profile-username"></span>
                     <a  class="dropdown-toggle" data-toggle="dropdown">
+                    	<span class="profile-username"></span>
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu animated flipInX pull-right" role="menu">
                         <li><a href="Change_password.html"><i class="fa fa-user"></i> 修改密码</a></li>
                         <li class="divider"></li>
-                        <li><a id="logout" href="#" ><i class="fa fa-sign-out"></i> 退出登录</a></li>
+                        <li><a id="logout" href="log_in.html"" ><i class="fa fa-sign-out"></i> 退出登录</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             </form>
             <ul class="hidden-xs header-menu pull-right">
                 <li>
-                    <a href="activity.html" target='_blank' title="笔记活动">活动</a>
+                    <a href="activity.html" title="笔记活动">活动</a>
                 </li>
             </ul>
         </header>
@@ -304,13 +304,25 @@
    		<script type="text/javascript" src="scripts/note/note.js"></script>
    		<script type="text/javascript" src="scripts/alert_util.js"></script>
 		<script type="text/javascript">
-			
-			//获取笔记本列表
-			//get_nb_list();
-			//获取特殊笔记本ID
-			//get_spnb_list();
+		window.onload=function(){
 			//实例化Ueditor编辑器
 			var um = UM.getEditor('myEditor');
+			$(".profile-username").append(cookie("nickName"));
+			list_notebook();
+			
+			$(".btn.btn-default.btn-expand-search").bind("click",function(){
+				cathKeyPress();
+			})
+			
+			//添加笔记
+			$("#add_note").click(addNote);
+			//保存修改
+			$("#save_note").click(save);
+			$('#like_button').click(get_collect_note);	
+			$('#rollback_button').click(function(){
+				list_recovernote();
+			});
+		}
 		</script>
 		<script type="text/javascript" >
 			$('#add_notebook').click(

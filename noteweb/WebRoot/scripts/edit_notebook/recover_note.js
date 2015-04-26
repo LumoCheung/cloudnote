@@ -1,10 +1,3 @@
-$(function(){
-	$('#rollback_button').click(function(){
-		list_recovernote();
-	});
-})
-
-
 function recover_note(note){
 	/*$('#list_note').append("<li class='online'><a  class='checked' id='noteid_"+note.note_id+"' onclick='delete_note(this)'>" +
 			"<i class='fa fa-file-text-o' title='online' rel='tooltip-bottom'></i>"+note.note_title

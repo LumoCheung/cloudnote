@@ -5,9 +5,10 @@ function regist(){
 	for(i=1;i<5;i++){
 		$("#warning_"+i).css("display","none");
 	}
-	if(!(regPwd()&finPwd()&cUser()&cNick())){
+	if(!(regPwd()|finPwd()|cUser()|cNick())){
 		$.ajax({
 			url:basepath+"/regist/regist.form",
+			contentType:"application/x-www-form-urlencoded; charset=utf-8",
 			type:"get",
 			beforeSend:function(xhr){
 				//存在中文乱码问题

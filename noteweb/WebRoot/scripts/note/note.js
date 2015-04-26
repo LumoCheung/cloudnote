@@ -1,17 +1,3 @@
-
-$(function(){
-	//添加笔记
-	$("#add_note").click(addNote);
-	//保存修改
-	$("#save_note").click(save);
-	$(".btn.btn-default.btn-expand-search").bind("click",function(){
-		cathKeyPress();
-	})
-	$('#like_button').click(get_collect_note);
-	
-})
-
-
 function cathKeyPress(){
 	//按enter发送查询请求
 	$(document).keypress(function(e){
@@ -56,6 +42,7 @@ function addNote()
 					//alert(bookId);
 					$.ajax({
 						url:basepath+"/note/addnote/"+bookId+"/"+$("#input_note").val().trim(),
+						contentType:"application/x-www-form-urlencoded; charset=utf-8",
 						type:"POST",
 						//返回类型
 						dataType:"json",

@@ -36,7 +36,8 @@ public class RegistController {
 		NoteResponse res = 
 			service.regist(name, pwd,nickName);
 		//这一步将进行默认笔记本的建立
-		noteBookService.addNotebook("默认笔记本",res.getData().toString(),"6");
+		if(res.getStatus().equals("0"))
+			noteBookService.addNotebook("默认笔记本",res.getData().toString(),"6");
 		return res;
 	}
 }

@@ -49,7 +49,7 @@ public class NoteController {
 	@ResponseBody
 	public NoteResponse addNote(@PathVariable("note_title")String title,@PathVariable("notebook_id")String bookId,HttpServletRequest request) throws UnsupportedEncodingException
 	{
-		title=new String(title.getBytes("iso-8859-1"),"utf-8");
+		//title=new String(title.getBytes("iso-8859-1"),"utf-8");
 		System.out.println("笔记的标题"+title+"笔记本的notebook"+bookId);
 		return noteSrevice.creat_note(bookId, title,request);
 		

@@ -24,8 +24,8 @@
             </div>
             <div class="header-profile">
                 <div class="profile-nav">
-                    <span class="profile-username">奔XX</span>
                     <a  class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="profile-username"></span>
                         <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu animated flipInX pull-right" role="menu">
@@ -75,13 +75,13 @@
 		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>   
         <script type="text/javascript" src="scripts/theme-setup.js"></script>
 		<!-- 全局变量&&AJAX&&回调函数&&COOKIE -->
-		<script type="text/javascript" src="scripts/BaseValues.js"></script>
-		<script type="text/javascript" src="scripts/activity/activity.js"></script>
+		<script type="text/javascript" src="scripts/baseValue.js"></script>
 		<script type="text/javascript" src="scripts/activity/activity_callback.js"></script>
+		<script type="text/javascript" src="scripts/activity/activity.js"></script>
 		<script type="text/javascript" src="scripts/cookie_util.js"></script>
-		<script type="text/javascript" src="scripts/utils.js"></script>
 		<!-- 页面事件处理JS -->
 		<script type="text/javascript" src='scripts/local.js'></script>
+        <script type="text/javascript" src="scripts/alert_util.js"></script>
 		<script type="text/javascript">
 			function get_dom(e){
 				return document.getElementById(e);
@@ -96,6 +96,7 @@
 				set_height();
 			}
 			window.onload=function(){
+				$(".profile-username").append(cookie("nickName"));
 				activity_list();
 			}
 		</script>

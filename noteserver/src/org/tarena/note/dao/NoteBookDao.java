@@ -2,7 +2,6 @@ package org.tarena.note.dao;
 
 import java.util.List;
 
-import org.tarena.note.entity.Note;
 import org.tarena.note.entity.NoteBook;
 import org.tarena.note.entity.NoteResponse;
 import org.tarena.note.util.MyBatisDao;

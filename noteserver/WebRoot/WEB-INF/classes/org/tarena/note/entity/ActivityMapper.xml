@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="org.tarena.note.dao.ActivityDao">
+ <select id="listAllActivity" resultType="org.tarena.note.entity.Activity">
+ 	select cn_activity_id id,cn_activity_title title,cn_activity_body body,cn_activity_end_time endDate
+		from cn_activity
+		where STRCMP(date_format(now(),'%Y-%m-%d'),cn_activity_end_time)&lt;=0
+ 	</select>
+ 	<select id="findByActivityId"  parameterType="String" resultType="org.tarena.note.entity.ActivityNote">
+ 	select cn_activity_id activityId,cn_note_activity_id activityNoteId,cn_note_id noteId,
+ 	cn_note_activity_up up,cn_note_activity_down down,
+ 	cn_note_activity_title title,cn_note_activity_body body
+		from cn_note_activity
+	where cn_activity_id=#{activityId}
+ 	</select>
+ 	
+</mapper>
