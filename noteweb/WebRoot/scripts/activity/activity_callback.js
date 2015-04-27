@@ -34,13 +34,15 @@ function list_note_activity(data)
 			length=15;
 			$("#more_activity_note").css("display","block");
 		}		
-		for(i=0;i<list;i++)
+		for(i=0;i<length;i++)
 		{
-			$("#first_action").append('<li id="'+list.activityNoteId+'" class="online"><a ><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>'
-					+(list.title.length>20?list.title.substring(0,20):list.title)+'<button type="button" class="btn btn-default btn-xs btn_position_3 btn_up"><i class="fa fa-thumbs-o-up"></i></button>'
+			var title=list[i].title;
+			$("#first_action ul").append('<li class="online"><a id="noteId_'+list[i].noteId+'" onclick="getcontent(this)"><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>'
+					+(title.length>20?title.substring(0,20):title)+'<button type="button" class="btn btn-default btn-xs btn_position_3 btn_up"><i class="fa fa-thumbs-o-up"></i></button>'
 					+'<button type="button" class="btn btn-default btn-xs btn_position_2 btn_down"><i class="fa fa-thumbs-o-down"></i></button>'
 					+'<button type="button" class="btn btn-default btn-xs btn_position btn_like"><i class="fa fa-star-o"></i>'
 					+'</button></a></li>');
 		}
 	}
 }
+

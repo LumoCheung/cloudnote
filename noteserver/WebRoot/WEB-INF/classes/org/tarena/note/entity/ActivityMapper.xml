@@ -14,5 +14,12 @@
 		from cn_note_activity
 	where cn_activity_id=#{activityId}
  	</select>
+ 	<insert id="activity_note"  parameterType="org.tarena.note.entity.ActivityNote">
+ 	insert into cn_note_activity(cn_activity_id,cn_note_activity_id,
+		cn_note_id,cn_note_activity_up,cn_note_activity_down,
+		cn_note_activity_title,cn_note_activity_body) 
+		values(#{activityId},#{activityNoteId},#{noteId},0,0,
+		#{title},#{body})
+ 	</insert>
  	
 </mapper>

@@ -1,20 +1,26 @@
 package org.tarena.note.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.tarena.note.dao.ActivityDao;
+import org.tarena.note.dao.NoteDao;
 import org.tarena.note.entity.Activity;
 import org.tarena.note.entity.ActivityNote;
+import org.tarena.note.entity.Note;
 import org.tarena.note.entity.NoteResponse;
 @Service("activityService")
 public class ActivityServiceImpl implements ActivityService {
 	@Resource
 	private ActivityDao activityDao;
+	@Resource
+	private NoteDao noteDao;
 	public NoteResponse listAllActivity(HttpServletRequest request) {
 		List<Activity> activities= activityDao.listAllActivity();
 		NoteResponse noteResponse=new NoteResponse();
@@ -34,8 +40,18 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	public NoteResponse activity_note(String activityId, String noteId) {
-		// TODO Auto-generated method stub
-		return null;
+		Note note=noteDao.findByNoteId(noteId);
+		ActivityNote activityNote=new ActivityNote();
+		activityNote.setActivityId(activityId);
+		activityNote.setActivityNoteId(UUID.randomUUID().toString());
+		activityNote.setTitle(note.getNote_title());
+		activityNote.setNoteId(noteId);
+		activityNote.setBody(note.getNote_body());
+		activityDao.activity_note(activityNote);
+		NoteResponse res=new NoteResponse();
+		res.setStatus("0");
+		res.setMessage("success");
+		return res;
 	}
 
 	public NoteResponse collect(String noteId, HttpServletRequest request) {

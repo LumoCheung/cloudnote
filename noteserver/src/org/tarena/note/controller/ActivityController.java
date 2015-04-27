@@ -34,5 +34,11 @@ public class ActivityController {
 		NoteResponse res=activityService.findByActivityId(id);
 		return res;
 	}
-
+	@RequestMapping(value="/activitynote/{noteid}/{activityid}",method=RequestMethod.GET)
+	@ResponseBody//将返回结果转成json格式字符串
+	public NoteResponse activityNote(@PathVariable("activityid")String activityId,@PathVariable("noteid")String noteId) throws Exception{
+		System.out.println("进入活动内容");
+		NoteResponse res=activityService.activity_note(activityId, noteId.split("_")[1]);
+		return res;
+	}
 }

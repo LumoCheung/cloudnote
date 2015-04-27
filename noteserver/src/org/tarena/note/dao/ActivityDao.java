@@ -27,7 +27,7 @@ public interface ActivityDao {
 	 * @param noteId
 	 * @return
 	 */
-	public void activity_note (String activityId, String noteId);
+	public void activity_note (ActivityNote note);
 	/**
 	 * 收藏笔记
 	 * @param noteId	传入笔记的id

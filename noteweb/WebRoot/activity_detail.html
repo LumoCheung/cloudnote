@@ -91,8 +91,8 @@
 										<div class="module" data-toggle="niceScroll">
 											<div class="chat-contact">
 												<div class="contact-body">
-													<ul class="contacts-list">
-														<li class="online"><a ><i class="fa fa-book" title="online" rel="tooltip-bottom"></i> 默认笔记本</a></li>
+													<ul id="list_notebook" class="contacts-list">
+														<!--li class="online"><a ><i class="fa fa-book" title="online" rel="tooltip-bottom"></i> 默认笔记本</a></li-->
 													</ul>
 												</div>
 											</div>
@@ -107,7 +107,7 @@
 											<div class="chat-contact">
 												<div class="contact-body">
 													<ul class="contacts-list">
-														<li class="online"><a ><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 测试笔记_1</a></li>
+														<!--li class="online"><a ><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i> 测试笔记_1</a></li-->
 													</ul>
 												</div>
 											</div>
@@ -160,6 +160,7 @@
 							<div class="contact-body clear_margin" id="content_body">
 							<h4><strong>笔记标题: </strong></h4>
 								<!-- 填写笔记内容 -->
+								<p id="myPage"></p>
 							</div>
 						</div>
 					</div>
@@ -220,17 +221,16 @@
 					$("#modalBasic_15").show();
 					$("#btn_cancle").click(btn_cancle);
 					$(".btn.btn-default.cancle").click(btn_cancle);
-					$(".btn.btn-primary.sure").click(
-						//20150426	
-					);
+					$(".btn.btn-primary.sure").click(activity_note);
+					notebook_list();
 				});
-				
 			}
         	function btn_cancle()
         	{
         		$("#modalBasic_15").hide();
         		$(".opacity_bg").hide();
-        		//20150426	
+        		//20150426	modalBasic_14
+        		$("#modalBasic_14").hide();
         	}
         </script>
     </body>		
