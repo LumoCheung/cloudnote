@@ -21,5 +21,10 @@
 		values(#{activityId},#{activityNoteId},#{noteId},0,0,
 		#{title},#{body})
  	</insert>
- 	
+ 	<update id="up" parameterType="String">
+ 		update cn_note_activity set cn_note_activity_up=cn_note_activity_up+1 where cn_note_id=#{noteId}
+ 	</update>
+ 	<update id="down" parameterType="String">
+ 		update cn_note_activity set cn_note_activity_down=cn_note_activity_down+1 where cn_note_id=#{noteId}
+ 	</update>
 </mapper>

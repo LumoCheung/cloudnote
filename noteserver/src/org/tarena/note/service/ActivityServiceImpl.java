@@ -1,8 +1,6 @@
 package org.tarena.note.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -54,9 +52,17 @@ public class ActivityServiceImpl implements ActivityService {
 		return res;
 	}
 
-	public NoteResponse collect(String noteId, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+	public NoteResponse upOrDownNote(String noteId, int flag) {
+		if(flag==0)
+		{
+			activityDao.down(noteId);
+		}
+		else {
+			activityDao.up(noteId);
+		}
+		NoteResponse res=new NoteResponse();
+		res.setStatus("0");
+		res.setMessage("success");
 		return null;
 	}
-
 }

@@ -1,7 +1,5 @@
 package org.tarena.note.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.tarena.note.entity.NoteResponse;
@@ -27,11 +25,7 @@ public interface ActivityService {
 	 */
 	public NoteResponse activity_note (String activityId, String noteId);
 	/**
-	 * 收藏笔记
-	 * @param noteId	传入笔记的id
-	 * @param userId	传入当前用户的id
-	 * @return
+	 * 踩/赞
 	 */
-	public NoteResponse collect(String noteId, HttpServletRequest request);//收藏笔记
-
+	public NoteResponse upOrDownNote(String noteId,int flag);
 }

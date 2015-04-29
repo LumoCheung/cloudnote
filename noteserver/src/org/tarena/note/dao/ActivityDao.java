@@ -29,11 +29,13 @@ public interface ActivityDao {
 	 */
 	public void activity_note (ActivityNote note);
 	/**
-	 * 收藏笔记
-	 * @param noteId	传入笔记的id
-	 * @param userId	 传入当前用户的id
-	 * @return
+	 * 赞
+	 * @param noteId
 	 */
-	public void collect(String noteId, HttpServletRequest request);//收藏笔记
-
+	public void up(String noteId);
+	/**
+	 * 踩
+	 * @param noteId
+	 */
+	public void down(String noteId);
 }

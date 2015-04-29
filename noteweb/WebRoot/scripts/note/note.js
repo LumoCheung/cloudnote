@@ -283,17 +283,17 @@ function search_success(data){
 		/**获取笔记id，点击触发showNoteDetail(id)方法*/
 		//判断更多的情况，保持大量数据显示在界面上
 		if(list.length<=20){
-			searchItem(list.length);
+			searchItem(list,list.length);
 			$("#more_note").css("display","none");
 		}
 		else{
-			searchItem(10);
+			searchItem(list,20);
 			$("#more_note").css("display","block");
 		}
 		
 	}
 }
-function searchItem(length){
+function searchItem(list,length){
 	for(var i=0;i<length;i++){	
 		var title=list[i].note_title;
 		var noteId=list[i].note_id;
@@ -326,7 +326,17 @@ function get_collect_note(){
 		url:basepath+"/note/list_collect_note",
 		success:function(data){
 			if(data.status=='1'){
-				list_note(data);
+				var list=data.data;
+				$('#seventh_side_right .contacts-list').html("");
+				showDiv(7,5);
+				for(var i=0;i<list.length;i++){	
+					var title=list[i].note_title;
+					var noteId=list[i].note_id;
+					//把用户id和笔记id放在一起发送值服务器
+					var id=list[i].note_id;
+					noteNode='<li class="idle"><a id="noteid_'+noteId+'" onclick="getContentAjax(this.id,2);"><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>'+title+'<button type="button" class="btn btn-default btn-xs btn_position btn_delete" onclick="event.cancelBubble=true;list_del_btn(this)"><i class="fa fa-times"></i></button></a></li>';
+					$('#seventh_side_right .contacts-list').append(noteNode);
+				}
 			}
 			else{
 				alert("收藏夹为空");

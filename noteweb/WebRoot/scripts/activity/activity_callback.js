@@ -34,13 +34,14 @@ function list_note_activity(data)
 			length=15;
 			$("#more_activity_note").css("display","block");
 		}		
+		$("#first_action ul").html("");
 		for(i=0;i<length;i++)
 		{
 			var title=list[i].title;
-			$("#first_action ul").append('<li class="online"><a id="noteId_'+list[i].noteId+'" onclick="getcontent(this)"><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>'
-					+(title.length>20?title.substring(0,20):title)+'<button type="button" class="btn btn-default btn-xs btn_position_3 btn_up"><i class="fa fa-thumbs-o-up"></i></button>'
-					+'<button type="button" class="btn btn-default btn-xs btn_position_2 btn_down"><i class="fa fa-thumbs-o-down"></i></button>'
-					+'<button type="button" class="btn btn-default btn-xs btn_position btn_like"><i class="fa fa-star-o"></i>'
+			$("#first_action ul").append('<li class="online"><a id="noteId_'+list[i].noteId+'" title="赞：'+list[i].up+'/踩：'+list[i].down+'" onclick="getcontent(this)"><i class="fa fa-file-text-o" title="online" rel="tooltip-bottom"></i>'
+					+(title.length>20?title.substring(0,20):title)+'<button type="button" class="btn btn-default btn-xs btn_position_3 btn_up" onclick="event.cancelBubble=true;up(this)"><i class="fa fa-thumbs-o-up"></i></button>'
+					+'<button type="button" class="btn btn-default btn-xs btn_position_2 btn_down" onclick="event.cancelBubble=true;down(this)"><i class="fa fa-thumbs-o-down"></i></button>'
+					+'<button type="button" class="btn btn-default btn-xs btn_position btn_like" onclick="event.cancelBubble=true;collect(this)"><i class="fa fa-star-o"></i>'
 					+'</button></a></li>');
 		}
 	}

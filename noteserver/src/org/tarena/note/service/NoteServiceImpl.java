@@ -1,6 +1,5 @@
 package org.tarena.note.service;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -158,13 +157,7 @@ public class NoteServiceImpl implements NoteSrevice {
 	/**根据关键字查询笔记 并将查询结果封装到NoteRespone中*/
 	public NoteResponse searchNote(String keywords) {
 		NoteResponse res=new NoteResponse();
-		keywords="%"+keywords+"%";
-		try {
-			keywords=new String(keywords.getBytes("iso-8859-1"),"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		System.out.println(keywords);
 		List<Note> list=notedao.findByKeywords(keywords);//将查询到的笔记存入该list
 		/**若list为空，则笔记未找到*/
 		if(list.isEmpty()){
@@ -186,8 +179,9 @@ public class NoteServiceImpl implements NoteSrevice {
 		Cookie user=cookie_util.cookie_findByName("userId", request.getCookies());
 		String userId=user.getValue().split("_")[0];
 		noteId=noteId.split(":")[0];
+		noteId=noteId.split("_")[1];
 		Note n=notedao.findByNoteId(noteId);
-		n.setNote_status_id("1");
+		n.setNote_status_id("6");
 		n.setUser_id(userId);
 		n.setNote_id(NoteUtil.createUUID());
 		notedao.creat_note(n);
@@ -199,7 +193,8 @@ public class NoteServiceImpl implements NoteSrevice {
 
 	public NoteResponse list_collect_note(HttpServletRequest request) {
 		String userId=cookie_util.cookie_findByName("userId", request.getCookies()).getValue();
-		List<Note>list= notedao.list_collect_note(userId);
+		System.out.println(userId);
+		List<Note>list= notedao.list_collect_note(userId.split("_")[0]);
 		NoteResponse nr=new NoteResponse();
 		if(!list.isEmpty()){
 			nr.setStatus("1");

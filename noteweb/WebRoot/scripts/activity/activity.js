@@ -163,8 +163,44 @@ function getcontent(obj)
 				//返回为json，json的data属性是list，list中只有一个值
 				//这里没有做更多的健全性处理
 				var note=list[0];
-				$("#content_body").html("<h4><strong>笔记标题: </strong>"+note.note_title+"</h4>");
+				$("#content_body h4").html("<strong>笔记标题: </strong>"+note.note_title);
 				$("#myPage").html(note.note_body);
 			}
+	});
+}
+
+/**把要收藏的笔记的id发送至服务器*/
+function collect(obj){
+		var id=$(obj).parent().attr("id");
+		$.ajax({
+			type:"post",
+			url:basepath+"/note/collectNote/"+id,
+			success:function(data){
+				alert(data.message);
+			}
+		});
+}
+
+function up(obj)
+{
+	var id=$(obj).parent().attr("id");
+	$.ajax({
+		type:"get",
+		url:basepath+"/activity/upNote/"+id,
+		success:function(data){
+			note_activity_list();
+		}
+	});
+}
+
+function down(obj)
+{
+	var id=$(obj).parent().attr("id");
+	$.ajax({
+		type:"get",
+		url:basepath+"/activity/downNote/"+id,
+		success:function(data){
+			note_activity_list();
+		}
 	});
 }
