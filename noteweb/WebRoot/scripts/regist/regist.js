@@ -28,7 +28,7 @@ function regist(){
 }
 function make_base_auth_reg(user, password,nickname) { 
 	//添加昵称，加入数据库
-	 var tok = user + ':' + password+":"+nickname;  
-	 var hash = Base64.encode(tok);  
+	 var tok = user + ':' + password+":"+nickname;
+	 var hash = Base64.encode(tok);
 	 return "Basic " + hash;  
 }

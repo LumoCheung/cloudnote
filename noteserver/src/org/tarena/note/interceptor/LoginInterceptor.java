@@ -21,8 +21,6 @@ public class LoginInterceptor  extends HandlerInterceptorAdapter{
 		String userId="";
 		 Cookie[] cookies=request.getCookies();
 		 if(cookies!=null){
-			 
-			 
 			 String token_session="";
 			 if(request.getSession().getAttribute("userId")!=null)
 			 userId=request.getSession().getAttribute("userId").toString()+"_token";
@@ -50,8 +48,8 @@ public class LoginInterceptor  extends HandlerInterceptorAdapter{
 					}
 			}
 		 }
-		response.sendRedirect("http://localhost:8080/noteweb/log_in.html");
-		return false;
+		 response.sendRedirect("http://localhost:8080/noteweb/error.html");
+		 return false;
 	}
 	
 	

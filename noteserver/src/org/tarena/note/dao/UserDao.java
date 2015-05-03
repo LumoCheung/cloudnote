@@ -16,4 +16,8 @@ public interface UserDao {
 	 * @param user
 	 */
 	public void insertUser(User user);
+	/**
+	 * 修改一条数据（密码）
+	 */
+	public void updatePwd(User user);
 }

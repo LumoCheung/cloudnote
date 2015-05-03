@@ -1,14 +1,11 @@
 package org.tarena.note.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
-import org.tarena.note.dao.NoteBookDao;
 import org.tarena.note.dao.UserDao;
 import org.tarena.note.entity.NoteResponse;
 import org.tarena.note.entity.User;
@@ -44,6 +41,7 @@ public class UserServiceImpl implements UserService{
 		//颁发一个令牌和用户ID
 		Map map = new HashMap();
 		map.put("userId", user.getId());
+		map.put("name", user.getName());
 		map.put("nick", user.getNickName());
 		map.put("token", NoteUtil.createUUID());
 		res.setData(map);
@@ -72,4 +70,15 @@ public class UserServiceImpl implements UserService{
 		return res;
 	}
 
+	public NoteResponse changePwd(String name, String pwd) {
+		User user=new User();
+		user.setName(name);
+		user.setPassword(pwd);
+		dao.updatePwd(user);
+		NoteResponse res=new NoteResponse();
+		res.setStatus("0");
+		res.setMessage("修改成功");
+		return res;
+	}
+	
 }

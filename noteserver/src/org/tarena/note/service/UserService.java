@@ -18,4 +18,6 @@ public interface UserService {
 			String name,String password);
 	
 	public NoteResponse regist(String name,String pwd,String nickName);
+	
+	public NoteResponse changePwd(String name,String pwd);
 }

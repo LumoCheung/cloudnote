@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
  "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
  <mapper namespace="org.tarena.note.dao.NoteDao">
- 	<delete id="delete_note" parameterType="string" >
+ 	<!--<delete id="delete_note" parameterType="string" >
  		delete from cn_note where cn_note_id=#{note_id}
- 	</delete>
+ 	</delete>-->
  	
- 	<!-- 5为永久删除(暂时不用，二次开发使用) -->
- 	<!-- <update id="delete_note" parameterType="string" >
+ 	<!-- 5为永久删除 -->
+ 	<update id="delete_note" parameterType="string" >
  		update cn_note set 
  		cn_note_status_id = '5'
  		where cn_note_id=#{id};
- 	</update> -->
+ 	</update>
  	
  	<!-- 1为正常 -->
  	<update id="replay_recover_note" parameterType="org.tarena.note.entity.NoteResponse">
@@ -20,9 +20,8 @@
  	
  	<select id="findByNoteBookId" parameterType="string" resultType="org.tarena.note.entity.Note">
 		select cn_note_id note_id,
-		cn_note_title note_title,cn_note_status_id note_status_id from cn_note where cn_notebook_id=#{id} and cn_note_status_id!='2' 
+		cn_note_title note_title,cn_note_status_id note_status_id from cn_note where cn_notebook_id=#{id} and cn_note_status_id in ('1','4') 
 	</select>
-	
 	
 	<select parameterType="String" id="findByNoteId" resultType="org.tarena.note.entity.Note">
  	select cn_note_id note_id,cn_notebook_id notebook_id,
@@ -89,10 +88,6 @@
 		resultType="org.tarena.note.entity.Note">
 		select cn_note_title note_title,cn_note_id note_id
 		from cn_note where cn_note_title like concat ('%',#{keywords},'%')  and cn_note_status_id='4'
-		<!-- and cn_note_status_id = 4 -->
-	</select>
-	<select id="judge_collect" parameterType="string" resultType="org.tarena.note.entity.Note">
-		
 	</select>
 	
 	<select id="list_collect_note" parameterType="string" resultType="org.tarena.note.entity.Note">

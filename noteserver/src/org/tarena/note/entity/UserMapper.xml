@@ -18,6 +18,9 @@
 	insert into cn_user(cn_user_id,cn_user_name,cn_user_password,cn_user_token,cn_user_desc,cn_user_nick)
 	values(#{id},#{name},#{password},#{token},#{descr},#{nickName})
 	</insert>
-
+<insert id="updatePwd" parameterType="org.tarena.note.entity.User">
+	update cn_user set cn_user_password=#{password}
+	where cn_user_name=#{name}
+	</insert>
 	
 </mapper>
